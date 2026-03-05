@@ -8,7 +8,7 @@ SCRIPT_DIR="$SPEC_DIR"
 source "${PKG_LIB_RPM:-${SPEC_DIR}/scripts/packaging/lib-rpm.sh}"
 
 PKG_NAME="xiboplayer-electron"
-VERSION="${1:-0.6.3}"
+VERSION="${1:-0.6.4}"
 DIST_DIR="$ELECTRON_DIR/dist-packages"
 
 echo "==> Building $PKG_NAME RPM v$VERSION"
