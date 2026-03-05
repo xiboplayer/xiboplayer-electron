@@ -407,6 +407,7 @@ function createWindow() {
   // CMS API calls always require valid certificates regardless of this setting.
   if (config.relaxSslCerts) {
     const cmsHost = config.cmsUrl ? new URL(config.cmsUrl).host : null;
+    const certWarned = new Set(); // Deduplicate: warn once per host
 
     app.on('certificate-error', (event, _webContents, url, error, _certificate, callback) => {
       try {
@@ -420,14 +421,17 @@ function createWindow() {
           callback(false);
           return;
         }
-        // Accept invalid certs for media/stream URLs and warn
+        // Accept invalid certs for media/stream URLs — warn once per host
         event.preventDefault();
-        console.warn(`[Security] Accepted invalid certificate for media URL: ${url} (${error})`);
         callback(true);
 
-        // Notify renderer to show warning in overlay
-        if (mainWindow && !mainWindow.isDestroyed()) {
-          mainWindow.webContents.send('cert-warning', { url, host: urlHost, error });
+        if (!certWarned.has(urlHost)) {
+          certWarned.add(urlHost);
+          console.warn(`[Security] Accepted invalid certificate for media URL: ${url} (${error})`);
+          // Notify renderer to show warning in overlay
+          if (mainWindow && !mainWindow.isDestroyed()) {
+            mainWindow.webContents.send('cert-warning', { url, host: urlHost, error });
+          }
         }
       } catch {
         callback(false);
