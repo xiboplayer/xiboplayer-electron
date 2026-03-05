@@ -131,7 +131,7 @@ const CONFIG_DEFAULTS = {
   allowShellCommands: false,
   logLevel: '',
   relaxSslCerts: true,
-  playerApiBase: '/api/v2/player',
+  playerApiBase: '',
   width: 1920,
   height: 1080,
   controls: {
