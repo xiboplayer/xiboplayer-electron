@@ -98,8 +98,11 @@ if (totalRAM_GB <= 1) {
 } else if (totalRAM_GB <= 4) {
   maxOldSpaceMB = 256;
   rasterThreads = Math.min(cpuCount, 2);
+} else if (totalRAM_GB <= 8) {
+  maxOldSpaceMB = 512;
+  rasterThreads = Math.min(cpuCount, 4);
 } else {
-  maxOldSpaceMB = 384;
+  maxOldSpaceMB = 768;
   rasterThreads = Math.min(cpuCount, 4);
 }
 
