@@ -18,6 +18,10 @@
   "transport": "auto",
   "googleGeoApiKey": "",
 
+  "debug": {
+    "consoleLogs": false
+  },
+
   "controls": {
     "keyboard": {
       "debugOverlays": false,
