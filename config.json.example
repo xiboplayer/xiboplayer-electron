@@ -7,6 +7,7 @@
 
   "kioskMode": true,
   "autoLaunch": false,
+  "allowShellCommands": false,
   "fullscreen": true,
   "hideMouseCursor": true,
   "preventSleep": true,

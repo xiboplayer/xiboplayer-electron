@@ -37,6 +37,10 @@ contextBridge.exposeInMainWorld('electronAPI', {
   // ── Version ──
   getVersion: () => ipcRenderer.invoke('get-version'),
 
+  // ── Shell Commands ──
+  // Execute native shell commands from CMS (requires allowShellCommands: true)
+  executeShellCommand: (data) => ipcRenderer.invoke('execute-shell-command', data),
+
   // ── Cursor Management ──
   resetCursorTimeout: () => ipcRenderer.send('reset-cursor-timeout'),
 

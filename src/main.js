@@ -15,7 +15,11 @@
 const { app, BrowserWindow, ipcMain, powerSaveBlocker, Menu, Tray, dialog, nativeImage, desktopCapturer } = require('electron');
 const path = require('path');
 const fs = require('fs');
+const { exec } = require('child_process');
+const { promisify } = require('util');
 const AutoLaunch = require('electron-auto-launch');
+
+const execPromise = promisify(exec);
 const os = require('os');
 
 /**
@@ -121,6 +125,7 @@ const CONFIG_DEFAULTS = {
   fullscreen: true,
   hideMouseCursor: true,
   preventSleep: true,
+  allowShellCommands: false,
   logLevel: '',
   relaxSslCerts: true,
   playerApiBase: '/api/v2/player',
@@ -277,7 +282,7 @@ async function createExpressServer() {
   // Extract PWA config — shared helper filters out common shell keys,
   // we only add Electron-specific extras here.
   const { extractPwaConfig, computeCmsId } = await import('@xiboplayer/utils/config');
-  const pwaConfig = extractPwaConfig(config, ['autoLaunch']);
+  const pwaConfig = extractPwaConfig(config, ['autoLaunch', 'allowShellCommands']);
 
   // Inject CMS ID for per-CMS cache namespacing
   if (pwaConfig && config.cmsUrl) {
@@ -300,6 +305,7 @@ async function createExpressServer() {
     pwaPath, appVersion: APP_VERSION,
     pwaConfig,
     configFilePath, dataDir, onLog,
+    allowShellCommands: !!config.allowShellCommands,
   });
 
   // Start server
@@ -850,6 +856,30 @@ function setupIpcHandlers() {
   // Get app version
   ipcMain.handle('get-version', () => {
     return APP_VERSION;
+  });
+
+  // Execute shell command (CMS widget/display commands)
+  // commandString arrives in CMS format: "shell|actual_command" or bare "actual_command"
+  ipcMain.handle('execute-shell-command', async (_event, { commandString }) => {
+    if (!config.allowShellCommands) {
+      console.warn('[Shell] Shell commands disabled (set allowShellCommands: true)');
+      return { success: false, reason: 'Shell commands disabled' };
+    }
+    if (!commandString) return { success: false, reason: 'Empty command' };
+
+    // Strip CMS type prefix (e.g., "shell|reboot" → "reboot")
+    const cmd = commandString.includes('|') ? commandString.split('|').slice(1).join('|') : commandString;
+    if (!cmd) return { success: false, reason: 'Empty command after prefix strip' };
+
+    console.log('[Shell] Executing:', cmd);
+    try {
+      const { stdout, stderr } = await execPromise(cmd, { timeout: 30000 });
+      console.log('[Shell] OK:', stdout.trim());
+      return { success: true, stdout: stdout.trim(), stderr: stderr.trim() };
+    } catch (error) {
+      console.error('[Shell] Failed:', error.message);
+      return { success: false, reason: error.message };
+    }
   });
 
   // Reload the player
