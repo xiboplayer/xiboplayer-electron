@@ -145,6 +145,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Fri Mar 06 2026 Pau Aliagas <linuxnow@gmail.com> - 0.6.5-1
+- fix: eliminate XMR WebSocket connection leak, delegate reconnection to framework, add XMR disconnected warning in top bar
+
 * Fri Mar 06 2026 Pau Aliagas <linuxnow@gmail.com> - 0.6.4-1
 - Features: cross-device sync, shell commands, per-CMS storage, video controls. Fixes: FD leak, V8 OOM, video duration, timeline overlay. Refactor: canonical /player/api/v2 path, CmsClient interface.
 
