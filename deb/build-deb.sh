@@ -118,7 +118,7 @@ populate_electron_source() {
     tar czf "$orig_dir/../${PKG_NAME}_${VERSION}.orig.tar.gz" \
         -C "$ELECTRON_DIR" \
         --exclude=dist-packages --exclude=deb-pkg --exclude=deb-src \
-        --exclude=node_modules --exclude=.git \
+        --exclude=deb/_srcbuild --exclude=node_modules --exclude=.git \
         --transform="s|^\.|${PKG_NAME}-${VERSION}|" .
     # Extract into orig_dir for dpkg-source
     cd "$orig_dir/.."
