@@ -95,6 +95,8 @@ After=graphical-session.target
 Wants=graphical-session.target
 PartOf=graphical-session.target
 Documentation=https://github.com/xibo-players/xiboplayer-electron
+StartLimitIntervalSec=60
+StartLimitBurst=5
 
 [Service]
 Type=simple
@@ -111,8 +113,6 @@ LimitCORE=0
 StandardOutput=journal
 StandardError=journal
 SyslogIdentifier=xiboplayer-electron
-StartLimitIntervalSec=60
-StartLimitBurst=5
 
 [Install]
 WantedBy=graphical-session.target
