@@ -293,6 +293,7 @@ async function createExpressServer() {
     if (cmsId) pwaConfig.cmsId = cmsId;
   }
 
+  if (config.relaxSslCerts) process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
   const { createProxyApp } = await import('@xiboplayer/proxy');
   const dataDir = app.getPath('sessionData');
 
@@ -337,7 +338,7 @@ async function createExpressServer() {
  */
 function createWindow() {
   const kioskMode = noKiosk ? false : config.kioskMode;
-  const fullscreen = noKiosk ? false : config.fullscreen;
+  const fullscreen = config.fullscreen;
   const { width, height } = config;
 
   console.log(`[Window] Creating window (kiosk: ${kioskMode}, fullscreen: ${fullscreen}, dev: ${isDev})`);
