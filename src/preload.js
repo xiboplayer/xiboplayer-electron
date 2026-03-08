@@ -58,7 +58,9 @@ ipcRenderer.on('cert-warning', (_event, { url, host, error }) => {
 
 // Forward proxy logs from main process → renderer DevTools console
 ipcRenderer.on('proxy-log', (_event, { level, name, args }) => {
-  const prefix = `[${name}]`;
+  const d = new Date();
+  const ts = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}:${String(d.getSeconds()).padStart(2, '0')}.${String(d.getMilliseconds()).padStart(3, '0')}`;
+  const prefix = `${ts} [${name}]`;
   const fn = level === 'error' ? console.error : level === 'warn' ? console.warn : console.log;
   fn(prefix, ...args);
 });
