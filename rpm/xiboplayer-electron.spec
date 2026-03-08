@@ -145,6 +145,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Sun Mar 08 2026 Pau Aliagas <linuxnow@gmail.com> - 0.6.8-1
+- Fix double layoutEnd emit, HTTP 304 retry bug, XLF media cache check, double-pop race, proxy stale-cache fallback, add proxy response timing and log timestamps
+
 * Sun Mar 08 2026 Pau Aliagas <linuxnow@gmail.com> - 0.6.7-1
 - fix: store layout durations as write-once facts, prevent startup double-pop
 
