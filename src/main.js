@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2024-2026 Pau Aliagas <linuxnow@gmail.com>
+
 /**
  * Xibo Player - Electron Kiosk Wrapper
  *
@@ -294,7 +297,7 @@ async function createExpressServer() {
   }
 
   if (config.relaxSslCerts) process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-  const { createProxyApp } = await import('@xiboplayer/proxy');
+  const { createProxyApp, attachSyncRelay } = await import('@xiboplayer/proxy');
   const dataDir = app.getPath('sessionData');
 
   // Forward proxy logs to renderer DevTools via IPC.
@@ -312,9 +315,11 @@ async function createExpressServer() {
     allowShellCommands: !!config.allowShellCommands,
   });
 
-  // Start server
-  expressServer = expressApp.listen(serverPort, 'localhost', () => {
-    console.log(`[Express] Server running on http://localhost:${serverPort}`);
+  // Start server — bind to listenAddress for cross-device sync (default: localhost)
+  const listenAddress = config.listenAddress || 'localhost';
+  expressServer = expressApp.listen(serverPort, listenAddress, () => {
+    console.log(`[Express] Server running on http://${listenAddress}:${serverPort}`);
+    attachSyncRelay(expressServer);
   });
 
   expressServer.on('error', (err) => {

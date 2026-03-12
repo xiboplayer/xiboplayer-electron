@@ -5,7 +5,7 @@
   "main": "src/main.js",
   "author": "Pau Aliagas <linuxnow@gmail.com>",
   "packageManager": "pnpm@10.7.0",
-  "license": "AGPL-3.0",
+  "license": "AGPL-3.0-or-later",
   "homepage": "https://xiboplayer.org",
   "repository": {
     "type": "git",
