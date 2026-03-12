@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (c) 2024-2026 Pau Aliagas <linuxnow@gmail.com>
+
 /**
  * Preload script - Security bridge between main and renderer process
  *
