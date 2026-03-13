@@ -145,6 +145,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Fri Mar 13 2026 Pau Aliagas <linuxnow@gmail.com> - 0.6.13-1
+- fix: serve XMDS dependencies from media/file fallback, fix CMS custom volume mount persistence
+
 * Fri Mar 13 2026 Pau Aliagas <linuxnow@gmail.com> - 0.6.12-1
 - XMDS file download caching, idempotent cache-through architecture, X-Cms-Download-Url header for XMDS-only CMSes, fix layout XLF 500 errors on XMDS transport
 
