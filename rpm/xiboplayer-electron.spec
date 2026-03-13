@@ -145,6 +145,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Thu Mar 13 2026 Pau Aliagas <linuxnow@gmail.com> - 0.6.12-1
+- XMDS file download caching: signed URLs route through cache-through proxy, eliminating CORS failures. Idempotent cache-through architecture: REST and XMDS converge on same proxy mirror paths, transport-agnostic ContentStore. X-Cms-Download-Url header for XMDS-only CMSes. Fix layout XLF 500 errors on XMDS transport.
+
 * Thu Mar 12 2026 Pau Aliagas <linuxnow@gmail.com> - 0.6.11-1
 - Native XMR client replacing upstream framework, DataConnector refreshAll fix, timeline overlay duration fix, AGPL-3.0 license, clientCode 400 registration
 
