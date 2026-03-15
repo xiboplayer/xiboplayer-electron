@@ -37,6 +37,9 @@ contextBridge.exposeInMainWorld('electronAPI', {
   // Much better than html2canvas: captures video frames, WebGL, composited layers
   captureScreenshot: () => ipcRenderer.invoke('capture-screenshot'),
 
+  // ── Network ──
+  getLanIpAddress: () => ipcRenderer.invoke('get-system-info').then(info => info.lanIpAddress || ''),
+
   // ── Version ──
   getVersion: () => ipcRenderer.invoke('get-version'),
 
