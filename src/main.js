@@ -80,6 +80,7 @@ app.commandLine.appendSwitch('enable-features',
   'VaapiVideoDecoder,VaapiVideoEncoder,VaapiOnNvidiaGPUs,' +
   'AcceleratedVideoEncoder,CanvasOopRasterization');
 
+
 // Prevent GPU crash and renderer freeze when screen is locked/off
 app.commandLine.appendSwitch('disable-gpu-watchdog');
 app.commandLine.appendSwitch('disable-background-timer-throttling');
@@ -315,11 +316,11 @@ async function createExpressServer() {
     allowShellCommands: !!config.allowShellCommands,
   });
 
-  // Start server — bind to listenAddress for cross-device sync (default: localhost)
-  const listenAddress = config.listenAddress || 'localhost';
+  // Start server — bind to 0.0.0.0 when sync lead so followers on LAN can reach the relay
+  const listenAddress = config.listenAddress || (config.sync?.isLead ? '0.0.0.0' : 'localhost');
   expressServer = expressApp.listen(serverPort, listenAddress, () => {
     console.log(`[Express] Server running on http://${listenAddress}:${serverPort}`);
-    attachSyncRelay(expressServer);
+    attachSyncRelay(expressServer, { secret: config.sync?.cmsKey || config.cmsKey });
   });
 
   expressServer.on('error', (err) => {
