@@ -823,17 +823,22 @@ function setupIpcHandlers() {
   // Get system information for hardware key generation
   ipcMain.handle('get-system-info', () => {
     const os = require('os');
-    // Get MAC address of first non-internal interface with a real MAC
-    let macAddress = 'n/a';
+    // Skip virtual/tunnel interfaces — only real LAN adapters
+    const skipIfaceRe = /^(lo|wg|tun|tap|docker|br-|veth|podman|virbr)/;
     const nets = os.networkInterfaces();
-    for (const iface of Object.values(nets)) {
+    let macAddress = 'n/a';
+    let lanIpAddress = '';
+    for (const [name, iface] of Object.entries(nets)) {
+      if (skipIfaceRe.test(name)) continue;
       for (const cfg of iface) {
-        if (!cfg.internal && cfg.mac && cfg.mac !== '00:00:00:00:00:00') {
+        if (cfg.internal) continue;
+        if (macAddress === 'n/a' && cfg.mac && cfg.mac !== '00:00:00:00:00:00') {
           macAddress = cfg.mac;
-          break;
+        }
+        if (!lanIpAddress && cfg.family === 'IPv4') {
+          lanIpAddress = cfg.address;
         }
       }
-      if (macAddress !== 'n/a') break;
     }
     return {
       platform: process.platform,
@@ -842,6 +847,7 @@ function setupIpcHandlers() {
       hostname: os.hostname(),
       totalMemory: os.totalmem(),
       macAddress,
+      lanIpAddress,
       electronVersion: process.versions.electron,
       chromeVersion: process.versions.chrome,
     };
