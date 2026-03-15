@@ -809,7 +809,7 @@ function setupIpcHandlers() {
 
   // Set Electron-side configuration (persists to config.json)
   ipcMain.handle('set-config', (_event, updates) => {
-    const allowed = ['cmsUrl', 'cmsKey', 'displayName', 'serverPort'];
+    const allowed = ['cmsUrl', 'cmsKey', 'displayName', 'serverPort', 'sync'];
     const filtered = {};
     for (const key of allowed) {
       if (updates[key] !== undefined) filtered[key] = updates[key];
