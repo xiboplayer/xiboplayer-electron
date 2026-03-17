@@ -17,6 +17,14 @@ Production-ready Electron kiosk application that wraps the Xibo PWA player for e
 - **System tray control** - Hidden menu accessible via Ctrl+Shift+F12
 - **Service management** - Easy enable/disable via systemd
 
+### Multi-Display Sync (v0.7.0)
+- **Video wall support** - Synchronized layout transitions across multiple displays with <8ms precision
+- **Lead/follower architecture** - CMS assigns roles via sync groups
+- **12 choreography effects** - Diagonal cascade, wave sweep, center-out, and more
+- **WebSocket relay** - Token-authenticated LAN sync on the lead's HTTP port
+- **Offline LAN sync** - Persisted config enables sync without CMS connectivity
+- **Multi-instance support** - Run multiple displays on the same machine (`--instance=NAME`)
+
 ### CMS Communication
 - **REST API first** - Uses the Xibo CMS REST API as the primary protocol
 - **XMDS SOAP fallback** - Falls back to XMDS SOAP when REST is unavailable
