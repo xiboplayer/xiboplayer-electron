@@ -298,7 +298,7 @@ async function createExpressServer() {
   }
 
   if (config.relaxSslCerts) process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-  const { createProxyApp, attachSyncRelay } = await import('@xiboplayer/proxy');
+  const { createProxyApp, attachSyncRelay, advertiseSyncService } = await import('@xiboplayer/proxy');
   const dataDir = app.getPath('sessionData');
 
   // Forward proxy logs to renderer DevTools via IPC.
@@ -321,6 +321,12 @@ async function createExpressServer() {
   expressServer = expressApp.listen(serverPort, listenAddress, () => {
     console.log(`[Express] Server running on http://${listenAddress}:${serverPort}`);
     attachSyncRelay(expressServer, { secret: config.sync?.cmsKey || config.cmsKey });
+
+    // Advertise sync relay via mDNS if this is a lead
+    if (config.sync?.isLead && config.sync?.syncGroupId) {
+      advertiseSyncService({ port: serverPort, syncGroupId: String(config.sync.syncGroupId), displayId: config.hardwareKey || 'unknown' });
+      console.log(`[Express] mDNS: advertising sync group ${config.sync.syncGroupId} on port ${serverPort}`);
+    }
   });
 
   expressServer.on('error', (err) => {
