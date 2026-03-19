@@ -145,6 +145,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Thu Mar 19 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.1-1
+- mDNS auto-discovery for zero-config video walls, CORE_EVENTS constants, shared openIDB helper, setup.html Electron fix
+
 * Tue Mar 17 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.0-1
 - Cross-device multi-display sync with <8ms precision, 12 choreography effects, token-authenticated WebSocket relay, unified prepare/show layout flow, sync status overlay, setup focus fix, instance-aware Chromium data dirs
 
