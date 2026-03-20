@@ -50,6 +50,6 @@ jobs:
       fedora-matrix: '["43", "44"]'
       arch-matrix: '["x86_64", "aarch64"]'
       gpg-sign: true
-      publish-to-repo: false
+      publish-to-repo: true
       create-github-release: true
     secrets: inherit
