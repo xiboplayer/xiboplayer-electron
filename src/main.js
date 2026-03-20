@@ -304,7 +304,7 @@ async function createExpressServer() {
   // remains instance-specific. Per-CMS isolation via {cmsId} subdirectory.
   const dataDir = path.join(
     process.env.XDG_DATA_HOME || path.join(os.homedir(), '.local', 'share'),
-    'xiboplayer', 'cache'
+    'xiboplayer', 'shared'
   );
 
   // Forward proxy logs to renderer DevTools via IPC.
