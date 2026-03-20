@@ -298,14 +298,15 @@ async function createExpressServer() {
   }
 
   if (config.relaxSslCerts) process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-  const { createProxyApp, attachSyncRelay, advertiseSyncService } = await import('@xiboplayer/proxy');
+  const { createProxyApp, attachSyncRelay, advertiseSyncService, migrateContentCache } = await import('@xiboplayer/proxy');
+  // One-time migration: hardlink old per-instance cache to shared cache (remove after v0.7.3)
+  const dataHome = process.env.XDG_DATA_HOME || path.join(os.homedir(), '.local', 'share');
+  migrateContentCache(dataHome);
+
   // ContentStore media cache — shared across all instances on the same machine.
   // Same CMS content stored once, not per-instance. Browser data (sessionData)
   // remains instance-specific. Per-CMS isolation via {cmsId} subdirectory.
-  const dataDir = path.join(
-    process.env.XDG_DATA_HOME || path.join(os.homedir(), '.local', 'share'),
-    'xiboplayer', 'shared'
-  );
+  const dataDir = path.join(dataHome, 'xiboplayer', 'shared');
 
   // Forward proxy logs to renderer DevTools via IPC.
   // The sink receives { level, name, args } from @xiboplayer/utils logger.
