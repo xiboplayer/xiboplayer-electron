@@ -8,7 +8,7 @@ source "${PKG_LIB_DEB:-${SCRIPT_DIR}/scripts/packaging/lib-deb.sh}"
 
 # ── Configuration ─────────────────────────────────────────────────────
 PKG_NAME="xiboplayer-electron"
-PKG_DEPENDS="libgtk-3-0, libnss3, libasound2, libgbm1, libatspi2.0-0, libxtst6, xdg-utils"
+PKG_DEPENDS="libgtk-3-0, libnss3, libasound2t64 | libasound2, libgbm1, libatspi2.0-0, libxtst6, xdg-utils"
 PKG_CONFLICTS="xiboplayer-pwa"
 PKG_DESCRIPTION="Xibo digital signage player (Electron)"
 PKG_DESCRIPTION_LONG=" Xibo Player wrapped in Electron for desktop and kiosk digital signage.
