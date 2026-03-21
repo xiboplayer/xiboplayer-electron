@@ -52,6 +52,24 @@ Production-ready Electron kiosk application that wraps the Xibo PWA player for e
 sudo dnf install xiboplayer-electron-*.rpm
 ```
 
+### From DEB (Debian/Ubuntu)
+
+```bash
+sudo apt install ./xiboplayer-electron_*.deb
+```
+
+Or from the APT repository:
+
+```bash
+curl -fsSL https://dl.xiboplayer.org/deb/GPG-KEY.asc | sudo gpg --dearmor -o /usr/share/keyrings/xiboplayer.gpg
+echo "Types: deb
+URIs: https://dl.xiboplayer.org/deb/ubuntu/24.04
+Suites: ./
+Signed-By: /usr/share/keyrings/xiboplayer.gpg" | sudo tee /etc/apt/sources.list.d/xiboplayer.sources
+sudo apt update
+sudo apt install xiboplayer-electron
+```
+
 ## Configuration
 
 ### Config file — `config.json` (recommended for provisioning)
