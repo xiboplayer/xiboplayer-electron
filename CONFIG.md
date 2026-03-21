@@ -158,3 +158,70 @@ config.json
 ```
 
 Changes to `config.json` require a player restart to take effect.
+
+## Config Templates
+
+The `configs/` directory contains reusable config templates with variable substitution and management scripts for development and testing.
+
+### Quick Start
+
+```bash
+# 1. Copy secrets example and fill in your CMS credentials
+cp configs/secrets.env.example configs/secrets.env
+vi configs/secrets.env
+
+# 2. Apply a template to create a player instance
+configs/apply.sh electron-dev electron            # dev mode with debug
+configs/apply.sh electron-kiosk electron           # production kiosk
+configs/apply.sh electron-sync-lead electron-sync-lead    PORT=8765
+configs/apply.sh electron-sync-follower electron-sync-follower-1 PORT=8766 TOPOLOGY_X=1
+
+# 3. Clean up an instance
+configs/clean.sh electron content   # clear downloaded media only
+configs/clean.sh electron browser   # clear browser caches + media
+configs/clean.sh electron full      # fresh start, keep auth
+configs/clean.sh electron nuke      # total wipe, new display identity
+```
+
+### Templates
+
+| Template | Purpose |
+|----------|---------|
+| `electron-dev.json` | Development: no kiosk, debug logging, all overlays and controls enabled |
+| `electron-kiosk.json` | Production: kiosk mode, no debug, no controls |
+| `electron-sync-lead.json` | Sync wall leader: 960x540, debug, sync config |
+| `electron-sync-follower.json` | Sync wall follower: configurable port, position, topology |
+
+### Variable Syntax
+
+Templates use `{{VAR}}` and `{{VAR:default}}` placeholders:
+
+```jsonc
+{
+  "cmsUrl": "{{CMS_URL}}",              // required — error if not in secrets.env or CLI
+  "displayName": "{{DISPLAY_NAME:dev}}", // optional — uses "dev" if not provided
+  "serverPort": {{PORT:8765}}            // numeric defaults work too
+}
+```
+
+Variables are resolved in order: CLI args > `secrets.env` > default value.
+
+### Secrets
+
+`configs/secrets.env` holds CMS credentials (not committed — in `.gitignore`):
+
+```bash
+CMS_URL=https://your-cms.example.com
+CMS_KEY=your-server-key
+API_CLIENT_ID=your-oauth-client-id       # optional: enables auto-authorization
+API_CLIENT_SECRET=your-oauth-client-secret
+```
+
+### Clean Levels
+
+| Level | Removes | Keeps |
+|-------|---------|-------|
+| `content` | Shared media cache | Browser state, auth, config |
+| `browser` | Browser caches + content | Auth (localStorage, IndexedDB), config |
+| `full` | Everything except auth | Display identity (hardwareKey, XMR keys) |
+| `nuke` | Everything | Nothing — new display, needs re-authorization |
