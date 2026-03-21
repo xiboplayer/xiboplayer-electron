@@ -1,0 +1,18 @@
+{
+  "cmsUrl": "{{CMS_URL}}",
+  "cmsKey": "{{CMS_KEY}}",
+  "apiClientId": "{{API_CLIENT_ID}}",
+  "apiClientSecret": "{{API_CLIENT_SECRET}}",
+  "displayName": "{{DISPLAY_NAME:electron-kiosk}}",
+  "serverPort": {{PORT:8765}},
+  "kioskMode": true,
+  "autoLaunch": false,
+  "fullscreen": true,
+  "hideMouseCursor": true,
+  "preventSleep": true,
+  "width": 1920,
+  "height": 1080,
+  "logLevel": "",
+  "relaxSslCerts": true,
+  "transport": "auto"
+}
