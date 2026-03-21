@@ -1,0 +1,44 @@
+{
+  "cmsUrl": "{{CMS_URL}}",
+  "cmsKey": "{{CMS_KEY}}",
+  "apiClientId": "{{API_CLIENT_ID}}",
+  "apiClientSecret": "{{API_CLIENT_SECRET}}",
+  "displayName": "{{DISPLAY_NAME:sync-follower}}",
+  "serverPort": {{PORT:8766}},
+  "kioskMode": false,
+  "autoLaunch": false,
+  "fullscreen": false,
+  "hideMouseCursor": false,
+  "preventSleep": false,
+  "width": 960,
+  "height": 540,
+  "logLevel": "debug",
+  "relaxSslCerts": true,
+  "transport": "auto",
+  "debug": {
+    "consoleLogs": true
+  },
+  "controls": {
+    "keyboard": {
+      "debugOverlays": true,
+      "setupKey": true,
+      "playbackControl": true,
+      "videoControls": true
+    },
+    "mouse": {
+      "statusBarOnHover": true
+    }
+  },
+  "sync": {
+    "isLead": false,
+    "syncGroup": "test-wall",
+    "syncPublisherPort": {{PORT:8765}},
+    "syncSwitchDelay": 500,
+    "syncVideoPauseDelay": 100,
+    "topology": { "x": {{TOPOLOGY_X:1}}, "y": {{TOPOLOGY_Y:0}}, "orientation": 0 },
+    "choreography": "diagonal-tl",
+    "staggerMs": 200,
+    "gridCols": 2,
+    "gridRows": 2
+  }
+}
