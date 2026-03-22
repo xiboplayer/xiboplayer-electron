@@ -19,8 +19,8 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
-    "@xiboplayer/proxy": "0.6.10",
-    "@xiboplayer/pwa": "0.6.10",
+    "@xiboplayer/proxy": "0.7.4",
+    "@xiboplayer/pwa": "0.7.4",
     "electron-auto-launch": "^5.0.7"
   },
   "devDependencies": {
