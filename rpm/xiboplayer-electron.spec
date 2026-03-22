@@ -145,6 +145,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Sun Mar 22 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.4-1
+- Preloaded video autoplay and duration tracking fix, refactoring, 1629 tests
+
 * Sat Mar 21 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.3-1
 - Safe chunked download chain: write locks, timeout scaling, auth persistence (#285)
 
