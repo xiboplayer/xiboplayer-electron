@@ -9,7 +9,7 @@
 
 Name:           xiboplayer-electron
 Version:        %{_version}
-Release:        2%{?dist}
+Release:        1%{?dist}
 Summary:        Xibo digital signage player (Electron)
 
 License:        AGPL-3.0-or-later
@@ -145,6 +145,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Mon Mar 23 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.5-1
+- Store protocol 204, zero console errors, logger override, timeline badge fix
+
 * Sun Mar 22 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.4-1
 - Preloaded video autoplay and duration tracking fix, refactoring, 1629 tests
 
