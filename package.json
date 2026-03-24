@@ -24,7 +24,7 @@
     "electron-auto-launch": "^5.0.7"
   },
   "devDependencies": {
-    "electron": "^40.8.3",
+    "electron": "^41.0.3",
     "electron-builder": "^26.8.1"
   },
   "build": {
@@ -55,5 +55,10 @@
     "rpm": {
       "depends": []
     }
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "electron"
+    ]
   }
 }

@@ -9,21 +9,21 @@ importers:
   .:
     dependencies:
       '@xiboplayer/proxy':
-        specifier: 0.7.4
-        version: 0.7.4
+        specifier: 0.7.5
+        version: 0.7.5
       '@xiboplayer/pwa':
-        specifier: 0.7.4
-        version: 0.7.4
+        specifier: 0.7.5
+        version: 0.7.5
       electron-auto-launch:
         specifier: ^5.0.7
         version: 5.0.7
     devDependencies:
       electron:
-        specifier: ^40.8.3
-        version: 40.8.3
+        specifier: ^41.0.3
+        version: 41.0.3
       electron-builder:
         specifier: ^26.8.1
-        version: 26.8.1(electron-builder-squirrel-windows@26.7.0)
+        version: 26.8.1(electron-builder-squirrel-windows@26.8.1)
 
 packages:
 
@@ -219,53 +219,53 @@ packages:
   '@types/yauzl@2.10.3':
     resolution: {integrity: sha512-oJoftv0LSuaDZE3Le4DbKX+KS9G36NzOeSap90UIK0yMA/NhKJhqlSGtNDORNRaIbQfzjXDrQa0ytJ6mNRGz/Q==}
 
-  '@xiboplayer/cache@0.7.4':
-    resolution: {integrity: sha512-uZEXYQXH+vn70eyIhfBya6iaTYuG2c7P4+3ddXvcNWG0VaHC4MN4Vs+6ebQ7ehdn3kqRqRoZocuIv++8EMKJiQ==}
+  '@xiboplayer/cache@0.7.5':
+    resolution: {integrity: sha512-ecxrDeJK+0Xv92ByGckjgfJoM0wRDIWgXwP9l2lMMfIu/aAnQWmQeQCO5P8vwaKw/6VFbmMRgPDymZoHOcUFaQ==}
 
-  '@xiboplayer/core@0.7.4':
-    resolution: {integrity: sha512-SOYOKzS+pCPHuHR9SScBMAI6H3kCltY6cxElRxohsG1DjZEWa30gOOBARlJEEgK4WGiXherftbcI3YU47xDBKA==}
+  '@xiboplayer/core@0.7.5':
+    resolution: {integrity: sha512-UwKdJMMsa12C+cTzh+e+x0AcrPfNAppDKLZ6rLOuBnV+CCxBXbDWfbMQjnzEa76IJz+WPBuKcUVuD3CDnDwrJw==}
     peerDependencies:
-      '@xiboplayer/cache': 0.7.4
-      '@xiboplayer/renderer': 0.7.4
-      '@xiboplayer/schedule': 0.7.4
-      '@xiboplayer/xmds': 0.7.4
+      '@xiboplayer/cache': 0.7.5
+      '@xiboplayer/renderer': 0.7.5
+      '@xiboplayer/schedule': 0.7.5
+      '@xiboplayer/xmds': 0.7.5
 
-  '@xiboplayer/crypto@0.7.4':
-    resolution: {integrity: sha512-jTNZLDmL7t5r9ZbdaNlVRJQMZsWvUm5yckX1BF3hyHyZ+0JNcAldVT1FsoeAgX6x8hBaw31zeTLkOx3a8tmKOw==}
+  '@xiboplayer/crypto@0.7.5':
+    resolution: {integrity: sha512-xR/U4zhjl4fYZHQUIU6nqIYAhRW6a6DcUmXlq4EpOGDHUYGLqMrFnN99FHE1rVH/8sm8oIkZESd+4BfwlpE8GA==}
 
-  '@xiboplayer/proxy@0.7.4':
-    resolution: {integrity: sha512-s9TvQj+Ds7lLaiEpiHB6PcrF1BlO7WzYqNWJJHYQub149zigxnWeVf85Fg2FvnRH6EF2oXCzg319bKK/njcA6w==}
+  '@xiboplayer/proxy@0.7.5':
+    resolution: {integrity: sha512-2O4wb9zc72RPiZKWcnpyedEmetVkrWkmLaGTaEDz5EzSrjWhLheiB554mfONUxDP1U8J4tr2Ua3y3pbD6DnXlQ==}
     hasBin: true
 
-  '@xiboplayer/pwa@0.7.4':
-    resolution: {integrity: sha512-XURfyGrwFVfMAebWyxLGncZ/7dbVjNgHsscTNruPhbviOnqDYQx27TocE16Cz+SPYXso5FtOhPQnZe8YWSb4yg==}
+  '@xiboplayer/pwa@0.7.5':
+    resolution: {integrity: sha512-2vYFJmvv/pJ2iUTxi7AQlL6rVVQXXlJW94/gTaN8ZTmL39HZoxceiMjzgQ284ARsRlcjdtB8yY+NZJ4hOhB/KQ==}
 
-  '@xiboplayer/renderer@0.7.4':
-    resolution: {integrity: sha512-OtwLQuxTNwIguretrOqDOId78WJQj6hiKPcLTZNDC88fYdct6C+kfXU3paE6xj8RiE4UCgKqY+hRhd+Qvh/rZg==}
+  '@xiboplayer/renderer@0.7.5':
+    resolution: {integrity: sha512-i0/zW50wVlVdCJllOdwNS2cJLAZ1UoOphv1ANY31Wpp3VThAC4CheWX9yXP9TCD1JEKyUthPZOLiCxhUBcdTxQ==}
 
-  '@xiboplayer/schedule@0.7.4':
-    resolution: {integrity: sha512-ttjnmeq5n68tHWvoAm5+6zCeid57gpqwkCBniwVKONQE24rF7wJ6rlv4N+GTP7btHB82QRANguqK69RQBunhdQ==}
+  '@xiboplayer/schedule@0.7.5':
+    resolution: {integrity: sha512-vrxf9c+iP1TMcCZr5rZ7h9Cz2ZIVcSvfdWWH3PMMnwlYl2JvsQRjfECBdLqNALYOCG9oVAgY63K+4gLjhpjzhg==}
 
-  '@xiboplayer/settings@0.7.4':
-    resolution: {integrity: sha512-C/mwc5iAbAdfiP0BD2Fj3HgdNDBJ7dNY7mqLlDbiEVMY7iwQc+bGEDQ7AoARtZR7tuDB1FS39g5koDx3taB2PA==}
+  '@xiboplayer/settings@0.7.5':
+    resolution: {integrity: sha512-6MGER995PtMbbRCkJ0oQP+Njqmb4I7w55LPR20RBO1Ex30sRIMZGoQQrdO1kTwf8Fy0kYm13HVgm8qiVbJqgFg==}
 
-  '@xiboplayer/stats@0.7.4':
-    resolution: {integrity: sha512-9xKh/1gZUaJtCLCCB7SIoVsydAo0LL8jetA3yQDh5I4p2PCPktA64EPoUOgHQ7qzhCwOXq78gPVDxbZIaQbwzg==}
+  '@xiboplayer/stats@0.7.5':
+    resolution: {integrity: sha512-y/qYmzZ7Cp95grisbJfp/iGutSW9akxKvH4wHyMXeAWCVFr7DldQhhvVw+ZwiUZ3H2hfXwHg/Ew4e6T8gcyl0w==}
 
-  '@xiboplayer/sw@0.7.4':
-    resolution: {integrity: sha512-ZKBhb7qHPaqBT98VWFsA9yfAXo3c3NWhLlXhjjSn4uWF5cF6a445mXZM2YITRyc8o7BKhe986QLy+qNrxKaL6g==}
+  '@xiboplayer/sw@0.7.5':
+    resolution: {integrity: sha512-Ov6qZgn8aGPZ5NukVvxxHeiIJdBlYl584BticCYplzSJ4hwftKlIQBWxtRZCoto2i23YfIHWViJWGnYxriqvtA==}
 
-  '@xiboplayer/sync@0.7.4':
-    resolution: {integrity: sha512-QgGj1UqbV4+i2uKPJNKwMC1beKHlM6nwhaePG2ko7baS5oEhpCwcohJydQLQcFmPonfnve6k0cQCQe8LLMlU5g==}
+  '@xiboplayer/sync@0.7.5':
+    resolution: {integrity: sha512-yw+qOGnU+78IE82smC10CJ2/3ZD3iPGOcPeaa5/EojpFkFpc0s8n7tAoWIFu6Nrr3bnHW9tfXEn4qEH8xFFcIQ==}
 
-  '@xiboplayer/utils@0.7.4':
-    resolution: {integrity: sha512-km0eiolZuaWYuZ2QKivZp9QvDIjnv/39v39HjaAe77bh8DckTovg+TEszbVdC+N7VLLvVLNUKRfinnaQMM7LNw==}
+  '@xiboplayer/utils@0.7.5':
+    resolution: {integrity: sha512-kD85iEubGXfyX8tKjLZD6MvrtkN6FM4g0PKAYeRwCB9jwerAd4U8dwK9CQLOmxAc6mBGr9n1p2b8/GXSM8Mkvw==}
 
-  '@xiboplayer/xmds@0.7.4':
-    resolution: {integrity: sha512-73Pl0P+s74NGqBs+2gtvwdWfIi0X4CBUzk+BfrBpUmuoxOJX12vgB+cV7PIebX/iC7QTHU9df/ekgObbT+esEQ==}
+  '@xiboplayer/xmds@0.7.5':
+    resolution: {integrity: sha512-oO8uoSj+II4L1bG5q7b3i5xrPW1K0ltjgPZidmlEGXUy3JuOcI1wbDN4tnAG26Ua1PANIQIW3jI1iSH5sW0kfA==}
 
-  '@xiboplayer/xmr@0.7.4':
-    resolution: {integrity: sha512-zBhCWgYBDlPuLIZzV3dlSR4Tu7CtkLVIJf1NdfgubjzC3mbB5sfaQmh6uchrS22px0k/pQsyiemDpVbzS51v5A==}
+  '@xiboplayer/xmr@0.7.5':
+    resolution: {integrity: sha512-bZmRWk9BawPqwp+9et7P5y66kBF6xpLrJ8f25KJoEJlSaihuJzLKvOgrzThTdZnhAv1jhaY6xNDupiLUPe7TMA==}
 
   '@xmldom/xmldom@0.8.11':
     resolution: {integrity: sha512-cQzWCtO6C8TQiYl1ruKNn2U6Ao4o4WBBcbL61yJl84x+j5sOWWFU9X7DpND8XZG3daDppSsigMdfAIl2upQBRw==}
@@ -309,13 +309,6 @@ packages:
 
   app-builder-bin@5.0.0-alpha.12:
     resolution: {integrity: sha512-j87o0j6LqPL3QRr8yid6c+Tt5gC7xNfYo6uQIQkorAC6MpeayVMZrEDzKmJJ/Hlv7EnOQpaRm53k6ktDYZyB6w==}
-
-  app-builder-lib@26.7.0:
-    resolution: {integrity: sha512-/UgCD8VrO79Wv8aBNpjMfsS1pIUfIPURoRn0Ik6tMe5avdZF+vQgl/juJgipcMmH3YS0BD573lCdCHyoi84USg==}
-    engines: {node: '>=14.0.0'}
-    peerDependencies:
-      dmg-builder: 26.7.0
-      electron-builder-squirrel-windows: 26.7.0
 
   app-builder-lib@26.8.1:
     resolution: {integrity: sha512-p0Im/Dx5C4tmz8QEE1Yn4MkuPC8PrnlRneMhWJj7BBXQfNTJUshM/bp3lusdEsDbvvfJZpXWnYesgSLvwtM2Zw==}
@@ -402,9 +395,6 @@ packages:
   builder-util-runtime@9.5.1:
     resolution: {integrity: sha512-qt41tMfgHTllhResqM5DcnHyDIWNgzHvuY2jDcYP9iaGpkWxTUzV6GQjDeLnlR1/DtdlcsWQbA7sByMpmJFTLQ==}
     engines: {node: '>=12.0.0'}
-
-  builder-util@26.4.1:
-    resolution: {integrity: sha512-FlgH43XZ50w3UtS1RVGDWOz8v9qMXPC7upMtKMtBEnYdt1OVoS61NYhKm/4x+cIaWqJTXua0+VVPI+fSPGXNIw==}
 
   builder-util@26.8.1:
     resolution: {integrity: sha512-pm1lTYbGyc90DHgCDO7eo8Rl4EqKLciayNbZqGziqnH9jrlKe8ZANGdityLZU+pJh16dfzjAx2xQq9McuIPEtw==}
@@ -623,16 +613,13 @@ packages:
     resolution: {integrity: sha512-eu2gbtDG1YaGT2UMSgsuE1GrQYuwr3KmFi26Ul2FTBaC/FLPiP0R21upDNUa7NQDQsRbvfK7vPffJ2XjGq80MQ==}
     engines: {node: '>=4.0.0'}
 
-  electron-builder-squirrel-windows@26.7.0:
-    resolution: {integrity: sha512-3EqkQK+q0kGshdPSKEPb2p5F75TENMKu6Fe5aTdeaPfdzFK4Yjp5L0d6S7K8iyvqIsGQ/ei4bnpyX9wt+kVCKQ==}
+  electron-builder-squirrel-windows@26.8.1:
+    resolution: {integrity: sha512-o288fIdgPLHA76eDrFADHPoo7VyGkDCYbLV1GzndaMSAVBoZrGvM9m2IehdcVMzdAZJ2eV9bgyissQXHv5tGzA==}
 
   electron-builder@26.8.1:
     resolution: {integrity: sha512-uWhx1r74NGpCagG0ULs/P9Nqv2nsoo+7eo4fLUOB8L8MdWltq9odW/uuLXMFCDGnPafknYLZgjNX0ZIFRzOQAw==}
     engines: {node: '>=14.0.0'}
     hasBin: true
-
-  electron-publish@26.6.0:
-    resolution: {integrity: sha512-LsyHMMqbvJ2vsOvuWJ19OezgF2ANdCiHpIucDHNiLhuI+/F3eW98ouzWSRmXXi82ZOPZXC07jnIravY4YYwCLQ==}
 
   electron-publish@26.8.1:
     resolution: {integrity: sha512-q+jrSTIh/Cv4eGZa7oVR+grEJo/FoLMYBAnSL5GCtqwUpr1T+VgKB/dn1pnzxIxqD8S/jP1yilT9VrwCqINR4w==}
@@ -641,8 +628,8 @@ packages:
     resolution: {integrity: sha512-bO3y10YikuUwUuDUQRM4KfwNkKhnpVO7IPdbsrejwN9/AABJzzTQ4GeHwyzNSrVO+tEH3/Np255a3sVZpZDjvg==}
     engines: {node: '>=8.0.0'}
 
-  electron@40.8.3:
-    resolution: {integrity: sha512-MH6LK4xM6VVmmtz0nRE0Fe8l2jTKSYTvH1t0ZfbNLw3o6dlBCVTRqQha6uL8ZQVoMy74JyLguGwK7dU7rCKIhw==}
+  electron@41.0.3:
+    resolution: {integrity: sha512-IDjx8liW1q+r7+MOip5W1Eo1eMwJzVObmYrd9yz2dPCkS7XlgLq3qPVMR80TpiROFp73iY30kTzMdpA6fEVs3A==}
     engines: {node: '>= 12.20.55'}
     hasBin: true
 
@@ -1236,8 +1223,8 @@ packages:
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
 
-  picomatch@4.0.3:
-    resolution: {integrity: sha512-5gTmgEY/sqK6gFXLIsQNH19lWb4ebPDLA4SdLP7dsWkIXHWlG66oPuVvXSGFPppYZz8ZDZq0dYYrbHfBCVUb1Q==}
+  picomatch@4.0.4:
+    resolution: {integrity: sha512-QP88BAKvMam/3NxH6vj2o21R6MjxZUAd6nlwAS/pnGvN9IVLocLHxGYIzFhg6fUQ+5th6P4dv4eW9jX3DSIj7A==}
     engines: {node: '>=12'}
 
   plist@3.1.0:
@@ -1481,8 +1468,8 @@ packages:
     resolution: {integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==}
     engines: {node: '>=8'}
 
-  tar@7.5.12:
-    resolution: {integrity: sha512-9TsuLcdhOn4XztcQqhNyq1KOwOOED/3k58JAvtULiYqbO8B/0IBAAIE1hj0Svmm58k27TmcigyDI0deMlgG3uw==}
+  tar@7.5.13:
+    resolution: {integrity: sha512-tOG/7GyXpFevhXVh8jOPJrmtRpOTsYqUIkVdVooZYJS/z8WhfQUX8RJILmeuJNinGAMSu1veBr4asSHFt5/hng==}
     engines: {node: '>=18'}
 
   temp-file@3.4.0:
@@ -1735,7 +1722,7 @@ snapshots:
       ora: 5.4.1
       read-binary-file-arch: 1.0.6
       semver: 7.7.4
-      tar: 7.5.12
+      tar: 7.5.13
       yargs: 17.7.2
     transitivePeerDependencies:
       - supports-color
@@ -1911,24 +1898,24 @@ snapshots:
       '@types/node': 24.12.0
     optional: true
 
-  '@xiboplayer/cache@0.7.4':
+  '@xiboplayer/cache@0.7.5':
     dependencies:
-      '@xiboplayer/utils': 0.7.4
+      '@xiboplayer/utils': 0.7.5
       spark-md5: 3.0.2
 
-  '@xiboplayer/core@0.7.4(@xiboplayer/cache@0.7.4)(@xiboplayer/renderer@0.7.4)(@xiboplayer/schedule@0.7.4)(@xiboplayer/xmds@0.7.4)':
+  '@xiboplayer/core@0.7.5(@xiboplayer/cache@0.7.5)(@xiboplayer/renderer@0.7.5)(@xiboplayer/schedule@0.7.5)(@xiboplayer/xmds@0.7.5)':
     dependencies:
-      '@xiboplayer/cache': 0.7.4
-      '@xiboplayer/renderer': 0.7.4
-      '@xiboplayer/schedule': 0.7.4
-      '@xiboplayer/utils': 0.7.4
-      '@xiboplayer/xmds': 0.7.4
+      '@xiboplayer/cache': 0.7.5
+      '@xiboplayer/renderer': 0.7.5
+      '@xiboplayer/schedule': 0.7.5
+      '@xiboplayer/utils': 0.7.5
+      '@xiboplayer/xmds': 0.7.5
 
-  '@xiboplayer/crypto@0.7.4': {}
+  '@xiboplayer/crypto@0.7.5': {}
 
-  '@xiboplayer/proxy@0.7.4':
+  '@xiboplayer/proxy@0.7.5':
     dependencies:
-      '@xiboplayer/utils': 0.7.4
+      '@xiboplayer/utils': 0.7.5
       bonjour-service: 1.3.0
       cors: 2.8.6
       express: 5.2.1
@@ -1938,63 +1925,63 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@xiboplayer/pwa@0.7.4':
+  '@xiboplayer/pwa@0.7.5':
     dependencies:
-      '@xiboplayer/cache': 0.7.4
-      '@xiboplayer/core': 0.7.4(@xiboplayer/cache@0.7.4)(@xiboplayer/renderer@0.7.4)(@xiboplayer/schedule@0.7.4)(@xiboplayer/xmds@0.7.4)
-      '@xiboplayer/crypto': 0.7.4
-      '@xiboplayer/renderer': 0.7.4
-      '@xiboplayer/schedule': 0.7.4
-      '@xiboplayer/settings': 0.7.4
-      '@xiboplayer/stats': 0.7.4
-      '@xiboplayer/sw': 0.7.4
-      '@xiboplayer/sync': 0.7.4
-      '@xiboplayer/utils': 0.7.4
-      '@xiboplayer/xmds': 0.7.4
-      '@xiboplayer/xmr': 0.7.4
+      '@xiboplayer/cache': 0.7.5
+      '@xiboplayer/core': 0.7.5(@xiboplayer/cache@0.7.5)(@xiboplayer/renderer@0.7.5)(@xiboplayer/schedule@0.7.5)(@xiboplayer/xmds@0.7.5)
+      '@xiboplayer/crypto': 0.7.5
+      '@xiboplayer/renderer': 0.7.5
+      '@xiboplayer/schedule': 0.7.5
+      '@xiboplayer/settings': 0.7.5
+      '@xiboplayer/stats': 0.7.5
+      '@xiboplayer/sw': 0.7.5
+      '@xiboplayer/sync': 0.7.5
+      '@xiboplayer/utils': 0.7.5
+      '@xiboplayer/xmds': 0.7.5
+      '@xiboplayer/xmr': 0.7.5
       html2canvas: 1.4.1
       nanoevents: 9.1.0
       xml2js: 0.6.2
 
-  '@xiboplayer/renderer@0.7.4':
+  '@xiboplayer/renderer@0.7.5':
     dependencies:
-      '@xiboplayer/cache': 0.7.4
-      '@xiboplayer/schedule': 0.7.4
-      '@xiboplayer/utils': 0.7.4
+      '@xiboplayer/cache': 0.7.5
+      '@xiboplayer/schedule': 0.7.5
+      '@xiboplayer/utils': 0.7.5
       pdfjs-dist: 4.10.38
 
-  '@xiboplayer/schedule@0.7.4':
+  '@xiboplayer/schedule@0.7.5':
     dependencies:
-      '@xiboplayer/utils': 0.7.4
+      '@xiboplayer/utils': 0.7.5
 
-  '@xiboplayer/settings@0.7.4':
+  '@xiboplayer/settings@0.7.5':
     dependencies:
-      '@xiboplayer/utils': 0.7.4
+      '@xiboplayer/utils': 0.7.5
 
-  '@xiboplayer/stats@0.7.4':
+  '@xiboplayer/stats@0.7.5':
     dependencies:
-      '@xiboplayer/utils': 0.7.4
+      '@xiboplayer/utils': 0.7.5
 
-  '@xiboplayer/sw@0.7.4':
+  '@xiboplayer/sw@0.7.5':
     dependencies:
-      '@xiboplayer/cache': 0.7.4
-      '@xiboplayer/utils': 0.7.4
+      '@xiboplayer/cache': 0.7.5
+      '@xiboplayer/utils': 0.7.5
 
-  '@xiboplayer/sync@0.7.4':
+  '@xiboplayer/sync@0.7.5':
     dependencies:
-      '@xiboplayer/utils': 0.7.4
+      '@xiboplayer/utils': 0.7.5
 
-  '@xiboplayer/utils@0.7.4':
+  '@xiboplayer/utils@0.7.5':
     dependencies:
-      '@xiboplayer/crypto': 0.7.4
+      '@xiboplayer/crypto': 0.7.5
 
-  '@xiboplayer/xmds@0.7.4':
+  '@xiboplayer/xmds@0.7.5':
     dependencies:
-      '@xiboplayer/utils': 0.7.4
+      '@xiboplayer/utils': 0.7.5
 
-  '@xiboplayer/xmr@0.7.4':
+  '@xiboplayer/xmr@0.7.5':
     dependencies:
-      '@xiboplayer/utils': 0.7.4
+      '@xiboplayer/utils': 0.7.5
 
   '@xmldom/xmldom@0.8.11': {}
 
@@ -2030,50 +2017,7 @@ snapshots:
 
   app-builder-bin@5.0.0-alpha.12: {}
 
-  app-builder-lib@26.7.0(dmg-builder@26.8.1)(electron-builder-squirrel-windows@26.7.0):
-    dependencies:
-      '@develar/schema-utils': 2.6.5
-      '@electron/asar': 3.4.1
-      '@electron/fuses': 1.8.0
-      '@electron/get': 3.1.0
-      '@electron/notarize': 2.5.0
-      '@electron/osx-sign': 1.3.3
-      '@electron/rebuild': 4.0.3
-      '@electron/universal': 2.0.3
-      '@malept/flatpak-bundler': 0.4.0
-      '@types/fs-extra': 9.0.13
-      async-exit-hook: 2.0.1
-      builder-util: 26.4.1
-      builder-util-runtime: 9.5.1
-      chromium-pickle-js: 0.2.0
-      ci-info: 4.3.1
-      debug: 4.4.3
-      dmg-builder: 26.8.1(electron-builder-squirrel-windows@26.7.0)
-      dotenv: 16.6.1
-      dotenv-expand: 11.0.7
-      ejs: 3.1.10
-      electron-builder-squirrel-windows: 26.7.0(dmg-builder@26.8.1)
-      electron-publish: 26.6.0
-      fs-extra: 10.1.0
-      hosted-git-info: 4.1.0
-      isbinaryfile: 5.0.7
-      jiti: 2.6.1
-      js-yaml: 4.1.1
-      json5: 2.2.3
-      lazy-val: 1.0.5
-      minimatch: 10.2.4
-      plist: 3.1.0
-      proper-lockfile: 4.1.2
-      resedit: 1.7.2
-      semver: 7.7.4
-      tar: 7.5.12
-      temp-file: 3.4.0
-      tiny-async-pool: 1.3.0
-      which: 5.0.0
-    transitivePeerDependencies:
-      - supports-color
-
-  app-builder-lib@26.8.1(dmg-builder@26.8.1)(electron-builder-squirrel-windows@26.7.0):
+  app-builder-lib@26.8.1(dmg-builder@26.8.1)(electron-builder-squirrel-windows@26.8.1):
     dependencies:
       '@develar/schema-utils': 2.6.5
       '@electron/asar': 3.4.1
@@ -2091,11 +2035,11 @@ snapshots:
       chromium-pickle-js: 0.2.0
       ci-info: 4.3.1
       debug: 4.4.3
-      dmg-builder: 26.8.1(electron-builder-squirrel-windows@26.7.0)
+      dmg-builder: 26.8.1(electron-builder-squirrel-windows@26.8.1)
       dotenv: 16.6.1
       dotenv-expand: 11.0.7
       ejs: 3.1.10
-      electron-builder-squirrel-windows: 26.7.0(dmg-builder@26.8.1)
+      electron-builder-squirrel-windows: 26.8.1(dmg-builder@26.8.1)
       electron-publish: 26.8.1
       fs-extra: 10.1.0
       hosted-git-info: 4.1.0
@@ -2109,7 +2053,7 @@ snapshots:
       proper-lockfile: 4.1.2
       resedit: 1.7.2
       semver: 7.7.4
-      tar: 7.5.12
+      tar: 7.5.13
       temp-file: 3.4.0
       tiny-async-pool: 1.3.0
       which: 5.0.0
@@ -2199,27 +2143,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  builder-util@26.4.1:
-    dependencies:
-      7zip-bin: 5.2.0
-      '@types/debug': 4.1.13
-      app-builder-bin: 5.0.0-alpha.12
-      builder-util-runtime: 9.5.1
-      chalk: 4.1.2
-      cross-spawn: 7.0.6
-      debug: 4.4.3
-      fs-extra: 10.1.0
-      http-proxy-agent: 7.0.2
-      https-proxy-agent: 7.0.6
-      js-yaml: 4.1.1
-      sanitize-filename: 1.6.4
-      source-map-support: 0.5.21
-      stat-mode: 1.0.0
-      temp-file: 3.4.0
-      tiny-async-pool: 1.3.0
-    transitivePeerDependencies:
-      - supports-color
-
   builder-util@26.8.1:
     dependencies:
       7zip-bin: 5.2.0
@@ -2255,7 +2178,7 @@ snapshots:
       minipass-pipeline: 1.2.4
       p-map: 7.0.4
       ssri: 12.0.0
-      tar: 7.5.12
+      tar: 7.5.13
       unique-filename: 4.0.0
 
   cacheable-lookup@5.0.4: {}
@@ -2412,9 +2335,9 @@ snapshots:
       minimatch: 3.1.5
       p-limit: 3.1.0
 
-  dmg-builder@26.8.1(electron-builder-squirrel-windows@26.7.0):
+  dmg-builder@26.8.1(electron-builder-squirrel-windows@26.8.1):
     dependencies:
-      app-builder-lib: 26.8.1(dmg-builder@26.8.1)(electron-builder-squirrel-windows@26.7.0)
+      app-builder-lib: 26.8.1(dmg-builder@26.8.1)(electron-builder-squirrel-windows@26.8.1)
       builder-util: 26.8.1
       fs-extra: 10.1.0
       iconv-lite: 0.6.3
@@ -2469,42 +2392,29 @@ snapshots:
       untildify: 4.0.0
       winreg: 1.2.4
 
-  electron-builder-squirrel-windows@26.7.0(dmg-builder@26.8.1):
+  electron-builder-squirrel-windows@26.8.1(dmg-builder@26.8.1):
     dependencies:
-      app-builder-lib: 26.7.0(dmg-builder@26.8.1)(electron-builder-squirrel-windows@26.7.0)
-      builder-util: 26.4.1
+      app-builder-lib: 26.8.1(dmg-builder@26.8.1)(electron-builder-squirrel-windows@26.8.1)
+      builder-util: 26.8.1
       electron-winstaller: 5.4.0
     transitivePeerDependencies:
       - dmg-builder
       - supports-color
 
-  electron-builder@26.8.1(electron-builder-squirrel-windows@26.7.0):
+  electron-builder@26.8.1(electron-builder-squirrel-windows@26.8.1):
     dependencies:
-      app-builder-lib: 26.8.1(dmg-builder@26.8.1)(electron-builder-squirrel-windows@26.7.0)
+      app-builder-lib: 26.8.1(dmg-builder@26.8.1)(electron-builder-squirrel-windows@26.8.1)
       builder-util: 26.8.1
       builder-util-runtime: 9.5.1
       chalk: 4.1.2
       ci-info: 4.4.0
-      dmg-builder: 26.8.1(electron-builder-squirrel-windows@26.7.0)
+      dmg-builder: 26.8.1(electron-builder-squirrel-windows@26.8.1)
       fs-extra: 10.1.0
       lazy-val: 1.0.5
       simple-update-notifier: 2.0.0
       yargs: 17.7.2
     transitivePeerDependencies:
       - electron-builder-squirrel-windows
-      - supports-color
-
-  electron-publish@26.6.0:
-    dependencies:
-      '@types/fs-extra': 9.0.13
-      builder-util: 26.4.1
-      builder-util-runtime: 9.5.1
-      chalk: 4.1.2
-      form-data: 4.0.5
-      fs-extra: 10.1.0
-      lazy-val: 1.0.5
-      mime: 2.6.0
-    transitivePeerDependencies:
       - supports-color
 
   electron-publish@26.8.1:
@@ -2532,7 +2442,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  electron@40.8.3:
+  electron@41.0.3:
     dependencies:
       '@electron/get': 2.0.3
       '@types/node': 24.12.0
@@ -2642,9 +2552,9 @@ snapshots:
     dependencies:
       pend: 1.2.0
 
-  fdir@6.5.0(picomatch@4.0.3):
+  fdir@6.5.0(picomatch@4.0.4):
     optionalDependencies:
-      picomatch: 4.0.3
+      picomatch: 4.0.4
 
   filelist@1.0.6:
     dependencies:
@@ -3087,7 +2997,7 @@ snapshots:
       nopt: 8.1.0
       proc-log: 5.0.0
       semver: 7.7.4
-      tar: 7.5.12
+      tar: 7.5.13
       tinyglobby: 0.2.15
       which: 5.0.0
     transitivePeerDependencies:
@@ -3165,7 +3075,7 @@ snapshots:
 
   picocolors@1.1.1: {}
 
-  picomatch@4.0.3: {}
+  picomatch@4.0.4: {}
 
   plist@3.1.0:
     dependencies:
@@ -3444,7 +3354,7 @@ snapshots:
     dependencies:
       has-flag: 4.0.0
 
-  tar@7.5.12:
+  tar@7.5.13:
     dependencies:
       '@isaacs/fs-minipass': 4.0.1
       chownr: 3.0.0
@@ -3474,8 +3384,8 @@ snapshots:
 
   tinyglobby@0.2.15:
     dependencies:
-      fdir: 6.5.0(picomatch@4.0.3)
-      picomatch: 4.0.3
+      fdir: 6.5.0(picomatch@4.0.4)
+      picomatch: 4.0.4
 
   tmp-promise@3.0.3:
     dependencies:
