@@ -9,7 +9,7 @@
 
 Name:           xiboplayer-electron
 Version:        %{_version}
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Xibo digital signage player (Electron)
 
 License:        AGPL-3.0-or-later
@@ -145,6 +145,10 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Mon Mar 24 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.5-2
+- Upgrade Electron 40.8.3 to 41.0.3 (Chrome 144 to 146)
+- Fix pnpm onlyBuiltDependencies for Electron postinstall
+
 * Mon Mar 23 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.5-1
 - Store protocol 204, zero console errors, logger override, timeline badge fix
 
