@@ -145,6 +145,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Thu Mar 26 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.7-1
+- Triple preload fix, video GPU buffer release, stripped Chrome services for stable Chromium kiosk
+
 * Wed Mar 25 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.6-1
 - Timer deferral fix, offline playback, download/cache race fixes, Electron 41 with --no-zygote GPU fix, Chromium kiosk optimization
 
