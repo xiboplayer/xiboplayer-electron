@@ -89,6 +89,16 @@ app.commandLine.appendSwitch('enable-features',
 // Prevent GPU crash and renderer freeze when screen is locked/off
 app.commandLine.appendSwitch('disable-gpu-watchdog');
 app.commandLine.appendSwitch('disable-background-timer-throttling');
+
+// Prevent permanent GPU fallback after SharedImageManager errors.
+// Chrome's internal crash counter (kGpuFallbackCrashCount) permanently
+// switches to software rendering after too many GPU context losses.
+// disableDomainBlockingFor3DAPIs() prevents Chrome from blacklisting
+// our origin for WebGL/3D after GPU crashes (otherwise localhost gets
+// banned for the session). Together these allow the GPU to recover
+// indefinitely instead of dying silently after ~10h of accumulated errors.
+app.disableDomainBlockingFor3DAPIs();
+app.commandLine.appendSwitch('disable-gpu-process-crash-limit');
 app.commandLine.appendSwitch('disable-renderer-backgrounding');
 
 // Adaptive memory tuning — scale V8 heap and raster threads to hardware.
@@ -224,7 +234,7 @@ const isDev = process.argv.includes('--dev');
 const noKiosk = process.argv.includes('--no-kiosk');
 
 // Parse CLI arguments for auto-config injection (non-persistent, in-memory only)
-const cliPort = parseArgument('port', 'int', null);
+const cliPort = parseArgument('server-port', 'int', null) || parseArgument('port', 'int', null);
 const cliCmsUrl = parseArgument('cms-url');
 const cliCmsKey = parseArgument('cms-key');
 const cliDisplayName = parseArgument('display-name');
