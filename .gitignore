@@ -28,3 +28,4 @@ Thumbs.db
 # Config — ignore user configs but track the shipped default
 config.json
 !/config.json
+configs/secrets.env

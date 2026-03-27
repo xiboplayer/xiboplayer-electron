@@ -1,0 +1,32 @@
+{
+  "cmsUrl": "{{CMS_URL}}",
+  "cmsKey": "{{CMS_KEY}}",
+  "apiClientId": "{{API_CLIENT_ID}}",
+  "apiClientSecret": "{{API_CLIENT_SECRET}}",
+  "displayName": "{{DISPLAY_NAME:electron-dev}}",
+  "serverPort": {{PORT:8765}},
+  "kioskMode": false,
+  "autoLaunch": false,
+  "fullscreen": false,
+  "hideMouseCursor": false,
+  "preventSleep": false,
+  "width": 1920,
+  "height": 1080,
+  "logLevel": "debug",
+  "relaxSslCerts": true,
+  "transport": "auto",
+  "debug": {
+    "consoleLogs": true
+  },
+  "controls": {
+    "keyboard": {
+      "debugOverlays": true,
+      "setupKey": true,
+      "playbackControl": true,
+      "videoControls": true
+    },
+    "mouse": {
+      "statusBarOnHover": true
+    }
+  }
+}

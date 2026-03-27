@@ -70,15 +70,20 @@ const dataHome = process.env.XDG_DATA_HOME || path.join(os.homedir(), '.local', 
 app.setPath('sessionData', path.join(dataHome, 'xiboplayer', instanceSuffix));
 
 // GPU acceleration flags — must be set before app.whenReady()
-// Electron 40+ (Chromium 144) auto-detects Wayland via ozone-platform-hint=auto.
-// Do NOT force --ozone-platform=wayland — it breaks Vulkan/GL negotiation.
+// Electron's GPU process spawns as a zygote child that doesn't inherit
+// --ozone-platform=wayland or DRM features (electron/electron#50455).
+// --no-zygote disables the zygote process pool, forcing each child process
+// to be spawned fresh with the full command line including GPU flags.
+// This trades startup speed for correct GPU flag propagation.
 app.commandLine.appendSwitch('ignore-gpu-blocklist');
 app.commandLine.appendSwitch('enable-gpu-rasterization');
 app.commandLine.appendSwitch('enable-zero-copy');
+app.commandLine.appendSwitch('no-zygote');
 app.commandLine.appendSwitch('enable-features',
   'AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL,' +
   'VaapiVideoDecoder,VaapiVideoEncoder,VaapiOnNvidiaGPUs,' +
-  'AcceleratedVideoEncoder,CanvasOopRasterization');
+  'AcceleratedVideoEncoder,CanvasOopRasterization,' +
+  'WaylandLinuxDrmSyncobj');
 
 
 // Prevent GPU crash and renderer freeze when screen is locked/off
@@ -298,8 +303,15 @@ async function createExpressServer() {
   }
 
   if (config.relaxSslCerts) process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-  const { createProxyApp, attachSyncRelay, advertiseSyncService } = await import('@xiboplayer/proxy');
-  const dataDir = app.getPath('sessionData');
+  const { createProxyApp, attachSyncRelay, advertiseSyncService, migrateContentCache } = await import('@xiboplayer/proxy');
+  // One-time migration: hardlink old per-instance cache to shared cache (remove after v0.7.3)
+  const dataHome = process.env.XDG_DATA_HOME || path.join(os.homedir(), '.local', 'share');
+  migrateContentCache(dataHome);
+
+  // ContentStore media cache — shared across all instances on the same machine.
+  // Same CMS content stored once, not per-instance. Browser data (sessionData)
+  // remains instance-specific. Per-CMS isolation via {cmsId} subdirectory.
+  const dataDir = path.join(dataHome, 'xiboplayer', 'shared');
 
   // Forward proxy logs to renderer DevTools via IPC.
   // The sink receives { level, name, args } from @xiboplayer/utils logger.
@@ -815,7 +827,7 @@ function setupIpcHandlers() {
 
   // Set Electron-side configuration (persists to config.json)
   ipcMain.handle('set-config', (_event, updates) => {
-    const allowed = ['cmsUrl', 'cmsKey', 'displayName', 'serverPort', 'sync'];
+    const allowed = ['cmsUrl', 'cmsKey', 'displayName', 'serverPort', 'sync', 'apiClientId', 'apiClientSecret'];
     const filtered = {};
     for (const key of allowed) {
       if (updates[key] !== undefined) filtered[key] = updates[key];

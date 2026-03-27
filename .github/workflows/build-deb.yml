@@ -46,7 +46,8 @@ jobs:
       build-command: 'pnpm run build:linux'
       deb-script: 'deb/build-deb.sh'
       deb-output-dir: dist-packages
+      distro-matrix: '["ubuntu:24.04", "debian:trixie"]'
       arch-matrix: '["amd64", "arm64"]'
       gpg-sign: true
-      publish-to-repo: false
+      publish-to-repo: true
     secrets: inherit
