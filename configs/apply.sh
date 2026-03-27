@@ -43,12 +43,15 @@ if [ ! -f "$TEMPLATE_FILE" ]; then
   exit 1
 fi
 
-# Load secrets from secrets.env (key=value, skip comments/blanks)
-if [ -f "$CONFIGS_DIR/secrets.env" ]; then
+# Load secrets from secrets.env — check user dir first, then script dir.
+# User should copy secrets.env.example to ~/.config/xiboplayer/secrets.env
+SECRETS_FILE="$XIBO_CONFIG/secrets.env"
+[ ! -f "$SECRETS_FILE" ] && SECRETS_FILE="$CONFIGS_DIR/secrets.env"
+if [ -f "$SECRETS_FILE" ]; then
   while IFS='=' read -r key value; do
     [[ -z "$key" || "$key" =~ ^# ]] && continue
     export "$key=$value"
-  done < "$CONFIGS_DIR/secrets.env"
+  done < "$SECRETS_FILE"
 fi
 
 # CLI args override secrets.env

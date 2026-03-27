@@ -161,26 +161,40 @@ Changes to `config.json` require a player restart to take effect.
 
 ## Config Templates
 
-The `configs/` directory contains reusable config templates with variable substitution and management scripts for development and testing.
+Reusable config templates with variable substitution and management scripts. Shipped in the RPM/DEB at `/usr/share/xiboplayer-electron/configs/` and also in the source repo under `configs/`.
 
-### Quick Start
+### Quick Start (RPM/DEB install)
 
 ```bash
-# 1. Copy secrets example and fill in your CMS credentials
-cp configs/secrets.env.example configs/secrets.env
-vi configs/secrets.env
+# 1. Copy secrets example to your user config dir and fill in CMS credentials
+mkdir -p ~/.config/xiboplayer
+cp /usr/share/xiboplayer-electron/configs/secrets.env.example ~/.config/xiboplayer/secrets.env
+vi ~/.config/xiboplayer/secrets.env
 
 # 2. Apply a template to create a player instance
-configs/apply.sh electron-dev electron            # dev mode with debug
-configs/apply.sh electron-kiosk electron           # production kiosk
-configs/apply.sh electron-sync-lead electron-sync-lead    PORT=8765
-configs/apply.sh electron-sync-follower electron-sync-follower-1 PORT=8766 TOPOLOGY_X=1
+/usr/share/xiboplayer-electron/configs/apply.sh electron-dev electron            # dev mode with debug
+/usr/share/xiboplayer-electron/configs/apply.sh electron-kiosk electron           # production kiosk
+/usr/share/xiboplayer-electron/configs/apply.sh electron-sync-lead electron-sync-lead    PORT=8765
+/usr/share/xiboplayer-electron/configs/apply.sh electron-sync-follower electron-sync-follower-1 PORT=8766 TOPOLOGY_X=1
 
-# 3. Clean up an instance
-configs/clean.sh electron content   # clear downloaded media only
-configs/clean.sh electron browser   # clear browser caches + media
-configs/clean.sh electron full      # fresh start, keep auth
-configs/clean.sh electron nuke      # total wipe, new display identity
+# 3. Start the player
+systemctl --user start xiboplayer-electron
+
+# 4. Clean up an instance
+/usr/share/xiboplayer-electron/configs/clean.sh electron content   # clear downloaded media only
+/usr/share/xiboplayer-electron/configs/clean.sh electron browser   # clear browser caches + media
+/usr/share/xiboplayer-electron/configs/clean.sh electron full      # fresh start, keep auth
+/usr/share/xiboplayer-electron/configs/clean.sh electron nuke      # total wipe, new display identity
+```
+
+### Quick Start (source checkout)
+
+```bash
+cd configs/
+cp secrets.env.example secrets.env
+vi secrets.env
+./apply.sh electron-dev electron
+./clean.sh electron content
 ```
 
 ### Templates
@@ -208,7 +222,8 @@ Variables are resolved in order: CLI args > `secrets.env` > default value.
 
 ### Secrets
 
-`configs/secrets.env` holds CMS credentials (not committed — in `.gitignore`):
+`~/.config/xiboplayer/secrets.env` holds CMS credentials (per-user, never in system dirs).
+The `apply.sh` script looks for secrets here first, falling back to the script's directory:
 
 ```bash
 CMS_URL=https://your-cms.example.com
