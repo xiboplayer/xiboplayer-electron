@@ -69,10 +69,110 @@ app.setPath('userData', path.join(app.getPath('appData'), 'xiboplayer', instance
 const dataHome = process.env.XDG_DATA_HOME || path.join(os.homedir(), '.local', 'share');
 app.setPath('sessionData', path.join(dataHome, 'xiboplayer', instanceSuffix));
 
+// ─── GPU Detection & Selection ──────────────────────────────────────
+// Detect available GPUs via /sys/class/drm and select the best one.
+// Override: --gpu=nvidia|intel|amd|auto|/dev/dri/renderDNNN, config.gpu, XIBO_GPU env
+const GPU_VENDORS = {
+  '0x10de': { name: 'nvidia', label: 'NVIDIA', rank: 3, vaDriver: 'nvidia' },
+  '0x1002': { name: 'amd', label: 'AMD', rank: 2, vaDriver: 'radeonsi' },
+  '0x8086': { name: 'intel', label: 'Intel', rank: 1, vaDriver: 'iHD' },
+};
+
+function detectGPUs() {
+  const gpus = [];
+  try {
+    const drmEntries = fs.readdirSync('/sys/class/drm');
+    const cards = drmEntries.filter(d => /^card\d+$/.test(d));
+    for (const card of cards) {
+      const devPath = `/sys/class/drm/${card}/device`;
+      let vendor, device, driver;
+      try {
+        vendor = fs.readFileSync(`${devPath}/vendor`, 'utf8').trim();
+        device = fs.readFileSync(`${devPath}/device`, 'utf8').trim();
+      } catch (_) { continue; }
+      try {
+        driver = path.basename(fs.readlinkSync(`${devPath}/driver`));
+      } catch (_) { driver = 'unknown'; }
+
+      // Find the render node for this card by matching device paths
+      const cardRealPath = fs.realpathSync(devPath);
+      let renderNode = null;
+      for (const rn of drmEntries.filter(d => d.startsWith('renderD'))) {
+        try {
+          if (fs.realpathSync(`/sys/class/drm/${rn}/device`) === cardRealPath) {
+            renderNode = `/dev/dri/${rn}`;
+            break;
+          }
+        } catch (_) {}
+      }
+      if (!renderNode) continue;
+
+      // Check if this card has display connectors (DP, HDMI, eDP, VGA, etc.)
+      // Cards with connectors drive actual displays; render-only GPUs have none.
+      const hasDisplay = drmEntries.some(d =>
+        d.startsWith(`${card}-`) && /-(DP|HDMI|eDP|VGA|DVI|DSI|LVDS)/.test(d)
+      );
+
+      const info = GPU_VENDORS[vendor] || { name: 'unknown', label: vendor, rank: 0, vaDriver: null };
+      gpus.push({ card, vendor, device, driver, renderNode, hasDisplay, ...info });
+    }
+  } catch (_) {}
+  return gpus;
+}
+
+function selectGPU(gpus, preference) {
+  if (!preference || preference === 'auto') {
+    // On hybrid GPU systems (Optimus/PRIME), the discrete GPU can't share
+    // buffers with the display GPU on Wayland (dmabuf cross-device fails).
+    // Prefer the GPU that has display connectors — it can composite directly.
+    const displayGPUs = gpus.filter(g => g.hasDisplay);
+    const renderOnly = gpus.filter(g => !g.hasDisplay);
+    if (displayGPUs.length > 0 && renderOnly.length > 0) {
+      // Hybrid system: pick the display GPU (safe default)
+      displayGPUs.sort((a, b) => b.rank - a.rank);
+      return displayGPUs[0];
+    }
+    // Single-GPU or all GPUs have displays: pick highest rank
+    gpus.sort((a, b) => b.rank - a.rank);
+    return gpus[0] || null;
+  }
+  // Direct render node path: /dev/dri/renderDNNN
+  if (preference.startsWith('/dev/dri/')) {
+    return gpus.find(g => g.renderNode === preference) || null;
+  }
+  // Vendor name: nvidia, intel, amd
+  return gpus.find(g => g.name === preference.toLowerCase()) || null;
+}
+
+const detectedGPUs = detectGPUs();
+const gpuPreference = parseArgument('gpu') || process.env.XIBO_GPU || null;
+// config.gpu is read later after config loads — apply override in setupGPU()
+
+function setupGPU() {
+  const pref = gpuPreference || config.gpu || 'auto';
+  const gpu = selectGPU(detectedGPUs, pref);
+
+  if (detectedGPUs.length > 0) {
+    console.log(`[GPU] Detected: ${detectedGPUs.map(g => `${g.label} ${g.device} (${g.renderNode}${g.hasDisplay ? ', display' : ', render-only'})`).join(', ')}`);
+  }
+  if (gpu) {
+    console.log(`[GPU] Selected: ${gpu.label} ${gpu.device} → ${gpu.renderNode} (pref: ${pref})`);
+    // Point Chromium's GPU process at the chosen render node
+    app.commandLine.appendSwitch('render-node-override', gpu.renderNode);
+    // Set VA-API driver for hardware video decode
+    if (gpu.vaDriver) {
+      process.env.LIBVA_DRIVER_NAME = gpu.vaDriver;
+      console.log(`[GPU] VA-API driver: ${gpu.vaDriver}`);
+    }
+  } else if (pref !== 'auto') {
+    console.warn(`[GPU] Requested "${pref}" not found — falling back to Chromium default`);
+  }
+  return gpu;
+}
+
 // GPU acceleration flags — must be set before app.whenReady()
 // Confirmed by Electron maintainer (mitchchn): GPU flags ARE passed to
-// zygote-spawned processes. --no-zygote is NOT needed for GPU acceleration.
-// The /proc/pid/cmdline display was fixed in PR #50509.
+// zygote-spawned processes (electron/electron#50462, PR #50509).
 app.commandLine.appendSwitch('ignore-gpu-blocklist');
 app.commandLine.appendSwitch('enable-gpu-rasterization');
 app.commandLine.appendSwitch('enable-zero-copy');
@@ -82,18 +182,13 @@ app.commandLine.appendSwitch('enable-features',
   'AcceleratedVideoEncoder,CanvasOopRasterization,' +
   'WaylandLinuxDrmSyncobj');
 
-
 // Prevent GPU crash and renderer freeze when screen is locked/off
 app.commandLine.appendSwitch('disable-gpu-watchdog');
 app.commandLine.appendSwitch('disable-background-timer-throttling');
 
 // Prevent permanent GPU fallback after SharedImageManager errors.
-// Chrome's internal crash counter (kGpuFallbackCrashCount) permanently
-// switches to software rendering after too many GPU context losses.
-// disableDomainBlockingFor3DAPIs() prevents Chrome from blacklisting
-// our origin for WebGL/3D after GPU crashes (otherwise localhost gets
-// banned for the session). Together these allow the GPU to recover
-// indefinitely instead of dying silently after ~10h of accumulated errors.
+// Chrome's internal crash counter permanently switches to software rendering
+// after too many GPU context losses. These flags allow indefinite GPU recovery.
 app.disableDomainBlockingFor3DAPIs();
 app.commandLine.appendSwitch('disable-gpu-process-crash-limit');
 app.commandLine.appendSwitch('disable-renderer-backgrounding');
@@ -147,6 +242,7 @@ const CONFIG_DEFAULTS = {
   allowShellCommands: false,
   logLevel: '',
   relaxSslCerts: true,
+  gpu: 'auto',
   playerApiBase: '',
   width: 1920,
   height: 1080,
@@ -238,6 +334,9 @@ const cliDisplayName = parseArgument('display-name');
 if (cliCmsUrl) config.cmsUrl = cliCmsUrl;
 if (cliCmsKey) config.cmsKey = cliCmsKey;
 if (cliDisplayName) config.displayName = cliDisplayName;
+
+// GPU selection — must run after config is loaded but before app.whenReady()
+const selectedGPU = setupGPU();
 
 // No CMS URL → unconfigured.
 // Wipe stale session data so the PWA shows the setup screen
