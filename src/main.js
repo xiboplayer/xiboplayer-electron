@@ -70,15 +70,12 @@ const dataHome = process.env.XDG_DATA_HOME || path.join(os.homedir(), '.local', 
 app.setPath('sessionData', path.join(dataHome, 'xiboplayer', instanceSuffix));
 
 // GPU acceleration flags — must be set before app.whenReady()
-// Electron's GPU process spawns as a zygote child that doesn't inherit
-// --ozone-platform=wayland or DRM features (electron/electron#50455).
-// --no-zygote disables the zygote process pool, forcing each child process
-// to be spawned fresh with the full command line including GPU flags.
-// This trades startup speed for correct GPU flag propagation.
+// Confirmed by Electron maintainer (mitchchn): GPU flags ARE passed to
+// zygote-spawned processes. --no-zygote is NOT needed for GPU acceleration.
+// The /proc/pid/cmdline display was fixed in PR #50509.
 app.commandLine.appendSwitch('ignore-gpu-blocklist');
 app.commandLine.appendSwitch('enable-gpu-rasterization');
 app.commandLine.appendSwitch('enable-zero-copy');
-app.commandLine.appendSwitch('no-zygote');
 app.commandLine.appendSwitch('enable-features',
   'AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL,' +
   'VaapiVideoDecoder,VaapiVideoEncoder,VaapiOnNvidiaGPUs,' +
