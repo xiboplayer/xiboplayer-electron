@@ -87,6 +87,18 @@ install -Dm644 CONFIG.md \
 install -Dm644 README.md \
     %{buildroot}%{_docdir}/%{name}/README.md
 
+# Config management scripts and templates
+install -Dm755 configs/apply.sh \
+    %{buildroot}%{_datadir}/%{name}/configs/apply.sh
+install -Dm755 configs/clean.sh \
+    %{buildroot}%{_datadir}/%{name}/configs/clean.sh
+install -Dm644 configs/secrets.env.example \
+    %{buildroot}%{_datadir}/%{name}/configs/secrets.env.example
+for tmpl in configs/electron-*.json; do
+    install -Dm644 "$tmpl" \
+        %{buildroot}%{_datadir}/%{name}/configs/$(basename "$tmpl")
+done
+
 # Systemd user service
 install -Dm644 /dev/stdin %{buildroot}%{_userunitdir}/%{name}.service << 'SERVICE'
 [Unit]
