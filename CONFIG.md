@@ -25,6 +25,9 @@ Configuration file: `~/.config/xiboplayer/electron/config.json`
   // Auto-launch on login
   "autoLaunch": false,
 
+  // GPU selection: "auto" (default), "nvidia", "intel", "amd", or "/dev/dri/renderDNNN"
+  "gpu": "auto",
+
   // CMS transport: "auto" (default) or "xmds" (force SOAP for unpatched Xibo CMS)
   "transport": "auto",
 
@@ -54,6 +57,54 @@ Configuration file: `~/.config/xiboplayer/electron/config.json`
 | `"xmds"` | Force SOAP/XMDS transport — use this for unpatched Xibo CMS without REST API |
 
 Omitting `transport` or setting it to any value other than `"xmds"` uses auto-detection.
+
+## GPU Selection
+
+The player auto-detects available GPUs via `/sys/class/drm` and selects the best one for compositing and video decode. It also sets the VA-API driver (`LIBVA_DRIVER_NAME`) to match.
+
+| Value | Description |
+|-------|-------------|
+| `"auto"` (default) | Auto-detect (see hybrid GPU behavior below) |
+| `"nvidia"` | Force NVIDIA GPU |
+| `"intel"` | Force Intel GPU |
+| `"amd"` | Force AMD GPU |
+| `"/dev/dri/renderDNNN"` | Force a specific DRM render node |
+
+**Override priority**: `--gpu=` CLI arg > `XIBO_GPU` env var > `config.gpu` > `"auto"`
+
+```bash
+# CLI
+xiboplayer-electron --gpu=nvidia
+
+# Environment variable
+XIBO_GPU=nvidia xiboplayer-electron
+
+# config.json
+{ "gpu": "nvidia" }
+```
+
+On startup the player logs which GPUs were detected and which was selected:
+
+```
+[GPU] Detected: NVIDIA 0x1f91 (/dev/dri/renderD129, render-only), Intel 0x3e9b (/dev/dri/renderD128, display)
+[GPU] Selected: Intel 0x3e9b → /dev/dri/renderD128 (pref: auto)
+[GPU] VA-API driver: iHD
+```
+
+### Hybrid GPU (Optimus/PRIME) behavior
+
+On laptops with both a discrete GPU (NVIDIA/AMD) and an integrated GPU (Intel), only one GPU is wired to the display outputs. The other is a render-only offload GPU with no display connectors.
+
+In `"auto"` mode the player **always picks the GPU that has display connectors**. On Wayland, the render-only GPU cannot share framebuffers with the display GPU (dmabuf cross-device transfer fails), so selecting it would produce a black screen.
+
+| System | `auto` selects | Why |
+|--------|---------------|-----|
+| Laptop with Intel + NVIDIA (Optimus) | Intel | Intel drives the screen; NVIDIA is render-only |
+| Desktop with NVIDIA driving monitor | NVIDIA | NVIDIA has the display connectors |
+| Desktop with AMD driving monitor | AMD | AMD has the display connectors |
+| Single GPU (any vendor) | That GPU | Only one choice |
+
+To force the discrete GPU (e.g. for testing on X11 where PRIME offload works), use `--gpu=nvidia` or `"gpu": "nvidia"` in config.
 
 ## Google Geolocation API Key
 
