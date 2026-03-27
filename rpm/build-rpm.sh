@@ -44,6 +44,7 @@ cp "$ELECTRON_DIR/config.json" "$ELECTRON_DIR/dist-packages/$LINUX_UNPACKED/"
 cp "$ELECTRON_DIR/config.json.example" "$ELECTRON_DIR/dist-packages/$LINUX_UNPACKED/"
 cp "$ELECTRON_DIR/CONFIG.md" "$ELECTRON_DIR/dist-packages/$LINUX_UNPACKED/"
 cp "$ELECTRON_DIR/README.md" "$ELECTRON_DIR/dist-packages/$LINUX_UNPACKED/"
+cp -r "$ELECTRON_DIR/configs" "$ELECTRON_DIR/dist-packages/$LINUX_UNPACKED/"
 
 if [ "$LINUX_UNPACKED" = "linux-unpacked" ]; then
     tar czf "$TARBALL" -C "$ELECTRON_DIR/dist-packages" linux-unpacked
