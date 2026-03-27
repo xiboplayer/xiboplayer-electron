@@ -157,6 +157,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Fri Mar 27 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.8-1
+- GPU auto-detection, layout stall fix, HLS/iframe cleanup, GPU crash recovery, config packaging in RPM/DEB
+
 * Thu Mar 26 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.7-1
 - Triple preload fix, video GPU buffer release, stripped Chrome services for stable Chromium kiosk
 
