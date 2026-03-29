@@ -157,6 +157,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Sun Mar 29 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.9-1
+- GPU rasterization (91% to 5% CPU), preload race fix, 512x512 tiles
+
 * Fri Mar 27 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.8-1
 - GPU auto-detection, layout stall fix, HLS/iframe cleanup, GPU crash recovery, config packaging in RPM/DEB
 
