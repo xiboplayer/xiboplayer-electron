@@ -47,7 +47,7 @@ jobs:
       rpm-spec: 'rpm/xiboplayer-electron.spec'
       rpm-script: 'rpm/build-rpm.sh'
       rpm-output-dir: dist-packages
-      fedora-matrix: '["43", "44"]'
+      fedora-matrix: '["43"]'
       arch-matrix: '["x86_64", "aarch64"]'
       gpg-sign: true
       publish-to-repo: true
