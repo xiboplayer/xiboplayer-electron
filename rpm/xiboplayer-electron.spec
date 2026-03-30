@@ -157,6 +157,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Mon Mar 30 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.10-1
+- ContentStore deferred on first boot, unclutter Recommends, Ed25519 GPG key
+
 * Sun Mar 29 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.9-1
 - GPU rasterization (91% to 5% CPU), preload race fix, 512x512 tiles
 
