@@ -67,4 +67,5 @@ jobs:
       arch-matrix: '["amd64", "arm64"]'
       gpg-sign: true
       publish-to-repo: true
+      default-version: '0.7.10'
     secrets: inherit
