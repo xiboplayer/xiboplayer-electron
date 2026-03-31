@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   wait-for-pwa:
@@ -69,3 +69,12 @@ jobs:
       publish-to-repo: true
       default-version: '0.7.10'
     secrets: inherit
+
+  release:
+    needs: [rpm, deb]
+    uses: xibo-players/.github/.github/workflows/create-release.yml@main
+    with:
+      package-name: xiboplayer-electron
+      rpm-arch: 'x86_64+aarch64'
+      deb-arch: 'amd64+arm64'
+      description: 'Electron-based Xibo digital signage player with hardware acceleration.'
