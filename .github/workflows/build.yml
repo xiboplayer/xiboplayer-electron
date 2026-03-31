@@ -75,6 +75,4 @@ jobs:
     uses: xibo-players/.github/.github/workflows/create-release.yml@main
     with:
       package-name: xiboplayer-electron
-      rpm-arch: 'x86_64+aarch64'
-      deb-arch: 'amd64+arm64'
       description: 'Electron-based Xibo digital signage player with hardware acceleration.'
