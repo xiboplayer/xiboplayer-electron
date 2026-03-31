@@ -1,4 +1,4 @@
-name: Build Electron DEB
+name: Build Electron Packages
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   wait-for-pwa:
@@ -37,7 +37,24 @@ jobs:
           echo "::error::@xiboplayer/pwa@${VERSION} not published after 10 min"
           exit 1
 
-  build:
+  rpm:
+    needs: [wait-for-pwa]
+    if: always() && (needs.wait-for-pwa.result == 'success' || needs.wait-for-pwa.result == 'skipped')
+    uses: xibo-players/.github/.github/workflows/build-rpm.yml@main
+    with:
+      package-name: xiboplayer-electron
+      build-command: 'pnpm run build:linux'
+      rpm-spec: 'rpm/xiboplayer-electron.spec'
+      rpm-script: 'rpm/build-rpm.sh'
+      rpm-output-dir: dist-packages
+      fedora-matrix: '["43"]'
+      arch-matrix: '["x86_64", "aarch64"]'
+      gpg-sign: true
+      publish-to-repo: true
+      default-version: '0.7.10'
+    secrets: inherit
+
+  deb:
     needs: [wait-for-pwa]
     if: always() && (needs.wait-for-pwa.result == 'success' || needs.wait-for-pwa.result == 'skipped')
     uses: xibo-players/.github/.github/workflows/build-deb.yml@main
