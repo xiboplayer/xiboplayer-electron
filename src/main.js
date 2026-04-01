@@ -186,6 +186,20 @@ app.commandLine.appendSwitch('enable-features',
 app.commandLine.appendSwitch('disable-gpu-watchdog');
 app.commandLine.appendSwitch('disable-background-timer-throttling');
 
+// Optional remote debugging port for monitoring (FPS, memory, tracing).
+// NOT enabled by default — set XIBOPLAYER_DEBUG_PORT=9223 to activate.
+// Security: binds to 127.0.0.1 only (local access).
+// Usage:
+//   systemctl --user set-environment XIBOPLAYER_DEBUG_PORT=9223
+//   systemctl --user restart xiboplayer-electron
+//   # ... monitor via CDP at http://localhost:9223 ...
+//   systemctl --user unset-environment XIBOPLAYER_DEBUG_PORT
+//   systemctl --user restart xiboplayer-electron
+if (process.env.XIBOPLAYER_DEBUG_PORT) {
+  app.commandLine.appendSwitch('remote-debugging-port', process.env.XIBOPLAYER_DEBUG_PORT);
+  console.log(`[xiboplayer] Debug: CDP on port ${process.env.XIBOPLAYER_DEBUG_PORT} (127.0.0.1 only)`);
+}
+
 // Prevent permanent GPU fallback after SharedImageManager errors.
 // Chrome's internal crash counter permanently switches to software rendering
 // after too many GPU context losses. These flags allow indefinite GPU recovery.
