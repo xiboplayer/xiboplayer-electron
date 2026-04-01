@@ -14,8 +14,9 @@ const fs = require('fs');
 
 const MAIN_JS = path.join(__dirname, '../../src/main.js');
 
-// Temporary config dir for test isolation
+// Temporary config dir and port for test isolation (avoid conflicts with running players)
 const TEST_CONFIG_DIR = path.join('/tmp', `xiboplayer-electron-test-${process.pid}`);
+const TEST_PORT = 8770 + (process.pid % 100); // Unique port per test run, avoids 8765/8766
 
 test.beforeAll(() => {
   fs.mkdirSync(TEST_CONFIG_DIR, { recursive: true });
@@ -37,7 +38,7 @@ test.describe('Electron app launch', () => {
 
   test('app starts and creates a window', async () => {
     electronApp = await electron.launch({
-      args: [MAIN_JS, '--no-kiosk', `--instance=test-${process.pid}`],
+      args: [MAIN_JS, '--no-kiosk', `--instance=test-${process.pid}`, `--port=${TEST_PORT}`],
       env: {
         ...process.env,
         XDG_CONFIG_HOME: TEST_CONFIG_DIR,
@@ -55,7 +56,7 @@ test.describe('Electron app launch', () => {
 
   test('window has correct default dimensions', async () => {
     electronApp = await electron.launch({
-      args: [MAIN_JS, '--no-kiosk', `--instance=test-${process.pid}`],
+      args: [MAIN_JS, '--no-kiosk', `--instance=test-${process.pid}`, `--port=${TEST_PORT}`],
       env: {
         ...process.env,
         XDG_CONFIG_HOME: TEST_CONFIG_DIR,
@@ -76,7 +77,7 @@ test.describe('Electron app launch', () => {
 
   test('IPC get-version returns package.json version', async () => {
     electronApp = await electron.launch({
-      args: [MAIN_JS, '--no-kiosk', `--instance=test-${process.pid}`],
+      args: [MAIN_JS, '--no-kiosk', `--instance=test-${process.pid}`, `--port=${TEST_PORT}`],
       env: {
         ...process.env,
         XDG_CONFIG_HOME: TEST_CONFIG_DIR,
@@ -99,7 +100,7 @@ test.describe('Electron app launch', () => {
 
   test('IPC get-system-info returns hardware data', async () => {
     electronApp = await electron.launch({
-      args: [MAIN_JS, '--no-kiosk', `--instance=test-${process.pid}`],
+      args: [MAIN_JS, '--no-kiosk', `--instance=test-${process.pid}`, `--port=${TEST_PORT}`],
       env: {
         ...process.env,
         XDG_CONFIG_HOME: TEST_CONFIG_DIR,
@@ -122,7 +123,7 @@ test.describe('Electron app launch', () => {
 
   test('IPC set-config respects allowlist', async () => {
     electronApp = await electron.launch({
-      args: [MAIN_JS, '--no-kiosk', `--instance=test-${process.pid}`],
+      args: [MAIN_JS, '--no-kiosk', `--instance=test-${process.pid}`, `--port=${TEST_PORT}`],
       env: {
         ...process.env,
         XDG_CONFIG_HOME: TEST_CONFIG_DIR,
@@ -142,7 +143,7 @@ test.describe('Electron app launch', () => {
 
   test('PWA setup page loads', async () => {
     electronApp = await electron.launch({
-      args: [MAIN_JS, '--no-kiosk', `--instance=test-${process.pid}`],
+      args: [MAIN_JS, '--no-kiosk', `--instance=test-${process.pid}`, `--port=${TEST_PORT}`],
       env: {
         ...process.env,
         XDG_CONFIG_HOME: TEST_CONFIG_DIR,
@@ -173,7 +174,7 @@ test.describe('Tray and system integration', () => {
 
   test('app creates a system tray icon', async () => {
     electronApp = await electron.launch({
-      args: [MAIN_JS, '--no-kiosk', `--instance=test-${process.pid}`],
+      args: [MAIN_JS, '--no-kiosk', `--instance=test-${process.pid}`, `--port=${TEST_PORT}`],
       env: {
         ...process.env,
         XDG_CONFIG_HOME: TEST_CONFIG_DIR,
