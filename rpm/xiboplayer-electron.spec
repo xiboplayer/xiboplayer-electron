@@ -157,6 +157,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Wed Apr 01 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.11-1
+- Optional XIBOPLAYER_DEBUG_PORT for CDP monitoring, player selection wizard, relative setup.html path
+
 * Mon Mar 30 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.10-1
 - ContentStore deferred on first boot, unclutter Recommends, Ed25519 GPG key
 
