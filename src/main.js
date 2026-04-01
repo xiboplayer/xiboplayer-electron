@@ -236,8 +236,8 @@ app.commandLine.appendSwitch('num-raster-threads', String(rasterThreads));
 app.commandLine.appendSwitch('gpu-rasterization-msaa-sample-count', '0');
 console.log(`[Memory] ${totalRAM_GB}GB RAM, ${cpuCount} CPUs → V8 heap ${maxOldSpaceMB}MB, ${rasterThreads} raster threads`);
 
-// Version
-const APP_VERSION = '0.2.1';
+// Version — read from package.json to avoid drift
+const APP_VERSION = require('../package.json').version;
 
 // ─── Configuration ──────────────────────────────────────────────────
 // Single config.json — sparse, user-provided overrides only.
@@ -702,7 +702,7 @@ function createWindow() {
 
   // Log renderer console output to main process console (useful for debugging)
   mainWindow.webContents.on('console-message', (_event, level, message, line, sourceId) => {
-    if (true) { // TODO: revert to (isDev || level >= 2) once startup is stable
+    if (isDev || level >= 2) {
       // Filter out upstream XMR framework bug: console.debug(event) logs "[object MessageEvent]"
       if (message === '[object MessageEvent]') return;
       const prefix = level === 3 ? '[Renderer ERROR]' : level === 2 ? '[Renderer WARN]' : '[Renderer]';

@@ -15,7 +15,7 @@
 
 const path = require('path');
 
-const APP_VERSION = '0.9.0';
+const APP_VERSION = require('../package.json').version;
 
 // Parse CLI args
 const args = process.argv.slice(2);
@@ -25,7 +25,7 @@ const serverPort = portArg ? parseInt(portArg.split('=')[1], 10) : 8765;
 
 // PWA dist path
 const pwaPath = isDev
-  ? path.join(__dirname, '../../xiboplayer-pwa/dist')
+  ? path.join(__dirname, '../../xiboplayer/packages/pwa/dist')
   : path.join(__dirname, '../node_modules/@xiboplayer/pwa/dist');
 
 console.log(`[Server] PWA path: ${pwaPath}`);
