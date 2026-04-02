@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.7.12 (2026-04-02)
 
 ### Bug Fixes
 
@@ -9,6 +9,8 @@
 - **Stale dev path fixed** — `server-standalone.js` referenced the old `xiboplayer-pwa` repo; updated to SDK monorepo `packages/pwa`.
 - **CI default-version synced** — Matched to 0.7.11.
 - **Vitest excludes e2e** — Added `vitest.config.js` to prevent Playwright specs from running under vitest.
+- **E2e tests use unique port** to avoid conflict with running players.
+- **Bumped Playwright 1.59.1 and Electron 41.1.1**.
 
 ### Testing
 
