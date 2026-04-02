@@ -157,6 +157,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Thu Apr 02 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.12-1
+- Split Vite builds for SW isolation, major dependency upgrades (vite 8, typescript 6, pdfjs-dist 5), PDF worker fix, e2e port fix
+
 * Wed Apr 01 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.11-1
 - Optional XIBOPLAYER_DEBUG_PORT for CDP monitoring, player selection wizard, relative setup.html path
 
