@@ -133,8 +133,7 @@ function selectGPU(gpus, preference) {
       return displayGPUs[0];
     }
     // Single-GPU or all GPUs have displays: pick highest rank
-    gpus.sort((a, b) => b.rank - a.rank);
-    return gpus[0] || null;
+    return [...gpus].sort((a, b) => b.rank - a.rank)[0] || null;
   }
   // Direct render node path: /dev/dri/renderDNNN
   if (preference.startsWith('/dev/dri/')) {
