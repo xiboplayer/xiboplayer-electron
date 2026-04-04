@@ -737,11 +737,13 @@ function createWindow() {
 function setupCursorHiding() {
   let cursorTimeout = null;
   let cursorHidden = false;
+  let cursorCssKey = null;
 
   const hideCursor = () => {
     if (mainWindow && !mainWindow.isDestroyed()) {
       mainWindow.webContents.insertCSS('html.cursor-hidden, html.cursor-hidden * { cursor: none !important; }')
         .then((key) => {
+          cursorCssKey = key;
           mainWindow.webContents.executeJavaScript('document.documentElement.classList.add("cursor-hidden")');
           cursorHidden = true;
         })
@@ -751,6 +753,10 @@ function setupCursorHiding() {
 
   const showCursor = () => {
     if (cursorHidden && mainWindow && !mainWindow.isDestroyed()) {
+      if (cursorCssKey) {
+        mainWindow.webContents.removeInsertedCSS(cursorCssKey).catch(() => {});
+        cursorCssKey = null;
+      }
       mainWindow.webContents.executeJavaScript('document.documentElement.classList.remove("cursor-hidden")')
         .catch(() => {});
       cursorHidden = false;
