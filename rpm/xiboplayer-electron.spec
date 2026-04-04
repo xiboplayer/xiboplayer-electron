@@ -157,6 +157,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Sat Apr 04 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.14-1
+- Security fixes (XSS, TLS), bug fixes (EventEmitter, GPU sort, insertCSS, dead deps), shared GPU module
+
 * Thu Apr 02 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.13-1
 - Integration tests, overlay tests, Docker Compose CMS stack, nightly CI
 
