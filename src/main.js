@@ -422,7 +422,11 @@ async function createExpressServer() {
     if (cmsId) pwaConfig.cmsId = cmsId;
   }
 
-  if (config.relaxSslCerts) process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+  // relaxSslCerts is handled by the webContents 'certificate-error' handler
+  // (see createWindow) which selectively accepts self-signed certs for media
+  // streams while keeping CMS connections strict. Do NOT set
+  // NODE_TLS_REJECT_UNAUTHORIZED=0 here — it disables TLS for ALL Node.js
+  // requests including the proxy's CMS API calls.
   const { createProxyApp, attachSyncRelay, advertiseSyncService, migrateContentCache } = await import('@xiboplayer/proxy');
   // One-time migration: hardlink old per-instance cache to shared cache (remove after v0.7.3)
   const dataHome = process.env.XDG_DATA_HOME || path.join(os.homedir(), '.local', 'share');
@@ -954,7 +958,11 @@ function setupIpcHandlers() {
     }
     if (Object.keys(filtered).length > 0) {
       saveConfig(filtered);
-      console.log('[Config] Configuration updated:', filtered);
+      const REDACT = new Set(['cmsKey', 'apiClientSecret']);
+      const safe = Object.fromEntries(
+        Object.entries(filtered).map(([k, v]) => [k, REDACT.has(k) ? '[REDACTED]' : v])
+      );
+      console.log('[Config] Configuration updated:', safe);
     }
     return true;
   });
