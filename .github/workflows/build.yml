@@ -51,7 +51,6 @@ jobs:
       arch-matrix: '["x86_64", "aarch64"]'
       gpg-sign: true
       publish-to-repo: true
-      default-version: '0.7.13'
     secrets: inherit
 
   deb:
@@ -67,7 +66,6 @@ jobs:
       arch-matrix: '["amd64", "arm64"]'
       gpg-sign: true
       publish-to-repo: true
-      default-version: '0.7.13'
     secrets: inherit
 
   release:
