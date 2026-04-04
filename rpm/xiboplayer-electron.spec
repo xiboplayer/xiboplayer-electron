@@ -157,6 +157,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Sat Apr 04 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.15-1
+- Security fixes (XSS, TLS bypass, secret redaction), bug fixes (EventEmitter.once, GPU sort, insertCSS leak, dead deps), shared GPU/memory module, popup suppression, Chromium memory tier sync
+
 * Sat Apr 04 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.14-1
 - Security fixes (XSS, TLS), bug fixes (EventEmitter, GPU sort, insertCSS, dead deps), shared GPU module
 
