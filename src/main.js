@@ -2,7 +2,7 @@
 // Copyright (c) 2024-2026 Pau Aliagas <linuxnow@gmail.com>
 
 /**
- * Xibo Player - Electron Kiosk Wrapper
+ * xiboplayer - Electron Kiosk Wrapper
  *
  * Production-ready Electron wrapper that serves the PWA player
  * in a fullscreen kiosk mode with all necessary security and features.
@@ -327,7 +327,7 @@ function writePwaVersion(version) {
 
 // Auto-launch configuration
 const autoLauncher = new AutoLaunch({
-  name: 'Xibo Player',
+  name: 'xiboplayer',
   isHidden: false,
 });
 
@@ -813,7 +813,7 @@ function createSystemTray() {
 
   const contextMenu = Menu.buildFromTemplate([
     {
-      label: `Xibo Player v${APP_VERSION}`,
+      label: `xiboplayer v${APP_VERSION}`,
       enabled: false,
     },
     { type: 'separator' },
@@ -877,7 +877,7 @@ function createSystemTray() {
   ]);
 
   tray.setContextMenu(contextMenu);
-  tray.setToolTip(`Xibo Player v${APP_VERSION}`);
+  tray.setToolTip(`xiboplayer v${APP_VERSION}`);
 }
 
 /**
@@ -906,7 +906,7 @@ function showConfigDialog() {
   dialog.showMessageBox(mainWindow, {
     type: 'info',
     title: 'Configuration',
-    message: 'Xibo Player Configuration',
+    message: 'xiboplayer Configuration',
     detail: `CMS URL: ${config.cmsUrl || 'Not set (configured in PWA setup)'}
 Server Port: ${config.serverPort}
 Kiosk Mode: ${config.kioskMode ? 'Enabled' : 'Disabled'}
@@ -1072,7 +1072,7 @@ function setupIpcHandlers() {
  * Application initialization
  */
 app.whenReady().then(async () => {
-  console.log(`[App] Starting Xibo Player v${APP_VERSION}`);
+  console.log(`[App] Starting xiboplayer v${APP_VERSION}`);
   if (instanceName) console.log(`[App] Instance: ${instanceName}`);
   console.log(`[App] User data path: ${app.getPath('userData')}`);
   console.log(`[App] Development mode: ${isDev}`);
@@ -1108,7 +1108,7 @@ app.whenReady().then(async () => {
     }
   }
 
-  console.log('[App] Xibo Player started successfully');
+  console.log('[App] xiboplayer started successfully');
 });
 
 /**

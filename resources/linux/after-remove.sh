@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Post-remove script for Xibo Player
+# Post-remove script for xiboplayer
 # This script runs after the package is removed
 #
 
@@ -10,7 +10,7 @@ USER_HOME="$HOME"
 SYSTEMD_USER_DIR="$USER_HOME/.config/systemd/user"
 SERVICE_FILE="$SYSTEMD_USER_DIR/xibo-player.service"
 
-echo "Xibo Player post-removal script"
+echo "xiboplayer post-removal script"
 
 # Stop and disable service if running
 if [ -f "$SERVICE_FILE" ]; then
@@ -41,7 +41,7 @@ if [ -f "$DESKTOP_FILE" ]; then
 fi
 
 echo ""
-echo "Xibo Player has been removed."
+echo "xiboplayer has been removed."
 echo ""
 echo "Note: Configuration files in ~/.config/xibo-player/ were preserved."
 echo "To remove them manually, run:"

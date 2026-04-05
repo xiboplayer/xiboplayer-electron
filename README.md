@@ -1,4 +1,4 @@
-# Xibo Player - Electron Kiosk Wrapper
+# xiboplayer - Electron Kiosk Wrapper
 
 Production-ready Electron kiosk application that wraps the Xibo PWA player for easy deployment on desktop systems.
 
@@ -167,7 +167,7 @@ are controlled separately via `controls.keyboard.debugOverlays` in `config.json`
 xiboplayer-electron
 
 # Or launch from applications menu
-# Applications → AudioVideo → Xibo Player
+# Applications → AudioVideo → xiboplayer
 ```
 
 ### Auto-Start on Boot

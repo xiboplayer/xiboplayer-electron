@@ -11,7 +11,7 @@ PKG_NAME="xiboplayer-electron"
 PKG_DEPENDS="libgtk-3-0, libnss3, libasound2t64 | libasound2, libgbm1, libatspi2.0-0, libxtst6, xdg-utils"
 PKG_CONFLICTS="xiboplayer-pwa"
 PKG_DESCRIPTION="Xibo digital signage player (Electron)"
-PKG_DESCRIPTION_LONG=" Xibo Player wrapped in Electron for desktop and kiosk digital signage.
+PKG_DESCRIPTION_LONG=" xiboplayer wrapped in Electron for desktop and kiosk digital signage.
  Provides a native application with built-in HTTP server, offline support,
  system tray integration, and automatic launch via systemd."
 PKG_SRC_BUILD_DEPENDS="debhelper (>= 12), nodejs, npm"
@@ -47,7 +47,7 @@ cp -a "$ELECTRON_DIR/dist-packages/$LINUX_UNPACKED/"* "$PKGDIR/usr/lib/xiboplaye
 # Wrapper script
 cat > "$PKGDIR/usr/bin/xiboplayer" << 'WRAPPER'
 #!/bin/bash
-# Xibo Player (Electron) — launcher
+# xiboplayer (Electron) — launcher
 exec /usr/lib/xiboplayer/xiboplayer "$@"
 WRAPPER
 chmod 755 "$PKGDIR/usr/bin/xiboplayer"
@@ -55,7 +55,7 @@ chmod 755 "$PKGDIR/usr/bin/xiboplayer"
 # Desktop entry
 cat > "$PKGDIR/usr/share/applications/xiboplayer.desktop" << 'DESKTOP'
 [Desktop Entry]
-Name=Xibo Player
+Name=xiboplayer
 Comment=Digital Signage Player for Xibo CMS
 Exec=xiboplayer
 Icon=xiboplayer
@@ -84,7 +84,7 @@ fi
 # Systemd user service
 cat > "$PKGDIR/usr/lib/systemd/user/xiboplayer.service" << 'SERVICE'
 [Unit]
-Description=Xibo Player - Digital Signage (Electron)
+Description=xiboplayer - Digital Signage (Electron)
 After=graphical-session.target
 Wants=graphical-session.target
 PartOf=graphical-session.target
