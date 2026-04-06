@@ -172,9 +172,14 @@ function setupGPU() {
 // GPU acceleration flags — must be set before app.whenReady()
 // Confirmed by Electron maintainer (mitchchn): GPU flags ARE passed to
 // zygote-spawned processes (electron/electron#50462, PR #50509).
+// TODO: refactor to use @xiboplayer/proxy/hardware once ESM/CJS boundary is resolved
 app.commandLine.appendSwitch('ignore-gpu-blocklist');
 app.commandLine.appendSwitch('enable-gpu-rasterization');
 app.commandLine.appendSwitch('enable-zero-copy');
+app.commandLine.appendSwitch('default-tile-width', '512');
+app.commandLine.appendSwitch('default-tile-height', '512');
+app.commandLine.appendSwitch('renderer-process-limit', '1');
+app.commandLine.appendSwitch('gpu-rasterization-msaa-sample-count', '0');
 app.commandLine.appendSwitch('enable-features',
   'AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL,' +
   'VaapiVideoDecoder,VaapiVideoEncoder,VaapiOnNvidiaGPUs,' +
