@@ -237,7 +237,6 @@ if (totalRAM_GB <= 1) {
 
 app.commandLine.appendSwitch('js-flags', `--max-old-space-size=${maxOldSpaceMB}`);
 app.commandLine.appendSwitch('num-raster-threads', String(rasterThreads));
-app.commandLine.appendSwitch('gpu-rasterization-msaa-sample-count', '0');
 console.log(`[Memory] ${totalRAM_GB}GB RAM, ${cpuCount} CPUs → V8 heap ${maxOldSpaceMB}MB, ${rasterThreads} raster threads`);
 
 // Version — read from package.json to avoid drift
