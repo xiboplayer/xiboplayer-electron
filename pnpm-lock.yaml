@@ -9,11 +9,11 @@ importers:
   .:
     dependencies:
       '@xiboplayer/proxy':
-        specifier: 0.7.11
-        version: 0.7.11
+        specifier: 0.7.15
+        version: 0.7.15
       '@xiboplayer/pwa':
-        specifier: 0.7.11
-        version: 0.7.11
+        specifier: 0.7.15
+        version: 0.7.15
       electron-auto-launch:
         specifier: ^5.0.7
         version: 5.0.7
@@ -29,7 +29,7 @@ importers:
         version: 26.8.1(electron-builder-squirrel-windows@26.8.1)
       vitest:
         specifier: ^4.1.2
-        version: 4.1.2(@types/node@25.5.0)(vite@8.0.3(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)(@types/node@25.5.0)(jiti@2.6.1))
+        version: 4.1.2(@types/node@25.5.2)(vite@8.0.3(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)(@types/node@25.5.2)(jiti@2.6.1))
 
 packages:
 
@@ -340,11 +340,11 @@ packages:
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
-  '@types/node@24.12.0':
-    resolution: {integrity: sha512-GYDxsZi3ChgmckRT9HPU0WEhKLP08ev/Yfcq2AstjrDASOYCSXeyjDsHg4v5t4jOj7cyDX3vmprafKlWIG9MXQ==}
+  '@types/node@24.12.2':
+    resolution: {integrity: sha512-A1sre26ke7HDIuY/M23nd9gfB+nrmhtYyMINbjI1zHJxYteKR6qSMX56FsmjMcDb3SMcjJg5BiRRgOCC/yBD0g==}
 
-  '@types/node@25.5.0':
-    resolution: {integrity: sha512-jp2P3tQMSxWugkCUKLRPVUpGaL5MVFwF8RDuSRztfwgN1wmqJeMSbKlnEtQqU8UrhTmzEmZdu2I6v2dpp7XIxw==}
+  '@types/node@25.5.2':
+    resolution: {integrity: sha512-tO4ZIRKNC+MDWV4qKVZe3Ql/woTnmHDr5JD8UI5hn2pwBrHEwOEMZK7WlNb5RKB6EoJ02gwmQS9OrjuFnZYdpg==}
 
   '@types/plist@3.0.5':
     resolution: {integrity: sha512-E6OCaRmAe4WDmWNsL/9RMqdkkzDCY1etutkflWk4c+AcjDU07Pcz1fQwTX0TQz+Pxqn9i4L1TU3UFpjnrcDgxA==}
@@ -387,53 +387,53 @@ packages:
   '@vitest/utils@4.1.2':
     resolution: {integrity: sha512-xw2/TiX82lQHA06cgbqRKFb5lCAy3axQ4H4SoUFhUsg+wztiet+co86IAMDtF6Vm1hc7J6j09oh/rgDn+JdKIQ==}
 
-  '@xiboplayer/cache@0.7.11':
-    resolution: {integrity: sha512-jbDLW/686ouHi6VyhV9ZT90eUtdr9TtrP9uf/pcsHCIgAOlNJYC04tLFsH2Ekemms7HjVJL2fvllisnI2vQF2Q==}
+  '@xiboplayer/cache@0.7.15':
+    resolution: {integrity: sha512-LWg+tPDcHTI7GJMG63ct83mhqhMl1p/WaszP9S1hZKVBycDlFCrCafIyDlbezVjr5m9+vX/XvXi1d+Zq5CtKbw==}
 
-  '@xiboplayer/core@0.7.11':
-    resolution: {integrity: sha512-sav6gii9WlNOIVCANR6WXpA89a2b4ifYFIANap8Koe3tGs0kCJkvvTUyVJPqFM7qb3hdenYYcjvKIGXsx45uQA==}
+  '@xiboplayer/core@0.7.15':
+    resolution: {integrity: sha512-jsG3WAVZVURZ2qGTsvlAY9QMNPZr9Txd3Kg80mqVlhcyE4UXXDgYKTBplE58v+LfOC2CpWHXcoFQM3tL4oag3g==}
     peerDependencies:
-      '@xiboplayer/cache': 0.7.11
-      '@xiboplayer/renderer': 0.7.11
-      '@xiboplayer/schedule': 0.7.11
-      '@xiboplayer/xmds': 0.7.11
+      '@xiboplayer/cache': 0.7.15
+      '@xiboplayer/renderer': 0.7.15
+      '@xiboplayer/schedule': 0.7.15
+      '@xiboplayer/xmds': 0.7.15
 
-  '@xiboplayer/crypto@0.7.11':
-    resolution: {integrity: sha512-zi3BYatls7Phw3eBQSGyR/XjwgLj6YRtqMfO0+XEl9LMkMoBPmR87Ir1nsOfiAxnwDaG7IIVBiU0jr6CJrP8MQ==}
+  '@xiboplayer/crypto@0.7.15':
+    resolution: {integrity: sha512-1MsKZfKy47+F6kBwNwSAK5dl6XJQWegKIInieBE1OBJfIroHxlL31pOfv9vg+gnJ+1ndoOFBZgvmRtY2qTRLqg==}
 
-  '@xiboplayer/proxy@0.7.11':
-    resolution: {integrity: sha512-s0Gy4Audxxl2jm8DHgWSQ624xaICYS2U9L8qdQdov+7YBBdFyZ4TTVQGakzWYeJqf05idQRDwA0ckeDW8uFV8Q==}
+  '@xiboplayer/proxy@0.7.15':
+    resolution: {integrity: sha512-JnDkbJrXcL3InTASca5gtLO9yxd7To5aUcMZ/Npb6r+IQ4OxYWvvBBGCZAGg92Ifwn1+7/PavoRPda289CRduA==}
     hasBin: true
 
-  '@xiboplayer/pwa@0.7.11':
-    resolution: {integrity: sha512-S/RypootLzJnpAvZ7zCd4vb8jh6dJ65H6CDjEDs1ofcV1ahqdZT3WC739xOkSHgkZerWOX6b8RFzvbDdUMZByA==}
+  '@xiboplayer/pwa@0.7.15':
+    resolution: {integrity: sha512-5HOnusIQIDh2lgUmetaP2+STVimF0JZObxndo5VJPofJTmDJQSfkuI3bZaAwnNeIMPgCyMBR7eAbJfXJS1ZiBw==}
 
-  '@xiboplayer/renderer@0.7.11':
-    resolution: {integrity: sha512-ZjnUGag5+5XEp0AVG0XVJ+TPwNRnaKfoaFXOq/4ZN/FABjrrjoc12wEUtBXQMp8YtkP06NOg7ygSBUcQRiZazA==}
+  '@xiboplayer/renderer@0.7.15':
+    resolution: {integrity: sha512-oYUm44P3nPF8Z6YWdj7XZyGW6+x8bF2zDvsC/2dBE0QDE0t+1ilt77mGBD+IR4GPG/rvWUIzmlOSfb+zDjeoIg==}
 
-  '@xiboplayer/schedule@0.7.11':
-    resolution: {integrity: sha512-2TBNTSS5ho8sbO7XyJpkHCRS10cEadlTIccHfOUzFh8/vNqr0uRfZlQOCRB986y28wbG1DoDW/7t12aYy3/AhQ==}
+  '@xiboplayer/schedule@0.7.15':
+    resolution: {integrity: sha512-LrDi97tiRLtiZRH0UGbI19x8Ue5l1oOp0yX9guAHDqeJucyPWqZov+27wimdLBxo4/Owv7B0U0xP4+4a2AWPnA==}
 
-  '@xiboplayer/settings@0.7.11':
-    resolution: {integrity: sha512-wUo48NLUdj4VgqY2z8E95mHf4B0q/pDZCLQLGxvKBSuDSuWUzYXBSwfuh1YaY2fLP9B+zdF0vipmrssQc1vvsg==}
+  '@xiboplayer/settings@0.7.15':
+    resolution: {integrity: sha512-UdAOFMTtZvyRM05OLcvwImlYFRSeyOc/sv1NpLwX/Hqya4gx+HNy9jkhiCbQXbUmtc/Bth5wPAdHkWeRNYiinw==}
 
-  '@xiboplayer/stats@0.7.11':
-    resolution: {integrity: sha512-2bJdXzxu2VLfBp6aHlrAioOSYP7cestX43e6CO6p/6sd+ZBbDkQ+KPlBZwNA7JV7EwlSKrwbHAgRYRBk7TkHUA==}
+  '@xiboplayer/stats@0.7.15':
+    resolution: {integrity: sha512-vlalpCszQ64N+kKPbNKQsy4mvwIKk4I0ET2exppXk4rlIea/BxzBtt0+21I4ExAogZD/ajlthwgyPGBXxiH2pg==}
 
-  '@xiboplayer/sw@0.7.11':
-    resolution: {integrity: sha512-3HEB2b9mkRLAMNTLM1Na077AhX4nm6Adr9JP4oY5OJ6DJn2S7NPltee/7b2qUWKeS1IKppWeVccaQkBz/JpA3A==}
+  '@xiboplayer/sw@0.7.15':
+    resolution: {integrity: sha512-kmskUUDul/B4Gs6ua3/VxBstizkfhqqJGIF3nLa/xwvLDP15KunilOeJCMrz/4qVI1fINxE7AUErFSA97wQ2Lw==}
 
-  '@xiboplayer/sync@0.7.11':
-    resolution: {integrity: sha512-+km64isrlQxiOKoV9SnojFOlsF3oY19FgmhMSWSt7PLvUssLLvDZW9pSfT0ERxNzXrAV1YBcdO3hWEhBzjadZw==}
+  '@xiboplayer/sync@0.7.15':
+    resolution: {integrity: sha512-sfTxKlqTXCN0sz2X53JEzX2UBkTmTm5tv1a9mnX8i7vPff2ALft5rpUkx6Le3RMAok+lpkTgbcgRDpT9zXr0gw==}
 
-  '@xiboplayer/utils@0.7.11':
-    resolution: {integrity: sha512-BT9vvQExirJPBeOU2ENYH71oODzP2J4Gxf+CDhq2pm20ycIL5S67aTDz3nqr4v1fsrzA9UUK+x+/ciCEOgPTiQ==}
+  '@xiboplayer/utils@0.7.15':
+    resolution: {integrity: sha512-7nj+zquciP6ZtTXJS9dehkYhnLYZdUWoMDxPhI36No7aHwgKdPjyZxzIFrjc1ST9lnIJIvs1IbX8xeC9QdqccA==}
 
-  '@xiboplayer/xmds@0.7.11':
-    resolution: {integrity: sha512-qsiOR2ksumnR4h44XUuaD4zdIGn4M9IqDNu8sHzpE2MUCgb47y28qOvQVu/XOL7wFQKNDhrHPYiSC5MHx+KRNw==}
+  '@xiboplayer/xmds@0.7.15':
+    resolution: {integrity: sha512-/fmQlnPQkMuhlWsHE+pcOpvSwTJEjFBKRNQANSV3ICZEaVr8rjXPQLFgrJTCV9kOfxksRFbzq3xGgHhbOwfwyw==}
 
-  '@xiboplayer/xmr@0.7.11':
-    resolution: {integrity: sha512-SkR5LamJzoec2b+KJ7ENtRxdS0QxbGbF5il7D04N5v+RE+gmJTRXMSKomIZeHh/g9JcgNEzTCCH/CqdqMd6msA==}
+  '@xiboplayer/xmr@0.7.15':
+    resolution: {integrity: sha512-N8E2eQkMM6pCerSeiYcjeCO5iSlZXLzCulD1sZuezZvnalU1CQ1x7JYnAMsGjDfTf3Y75HdpxebjAcVJsQgyQA==}
 
   '@xmldom/xmldom@0.8.12':
     resolution: {integrity: sha512-9k/gHF6n/pAi/9tqr3m3aqkuiNosYTurLLUtc7xQ9sxB/wm7WPygCv8GYa6mS0fLJEHhqMC1ATYhz++U/lRHqg==}
@@ -1383,10 +1383,6 @@ packages:
     resolution: {integrity: sha512-2eznPJP8z2BFLX50tf0LuODrpINqP1RVIm/CObbTcBRITQgmC/TjcREF1NeTBzIcR5XO/ukWo+YHOjBbFwIupg==}
     hasBin: true
 
-  nanoevents@9.1.0:
-    resolution: {integrity: sha512-Jd0fILWG44a9luj8v5kED4WI+zfkkgwKyRQKItTtlPfEsh7Lznfi1kr8/iZ+XAIss4Qq5GqRB0qtWbaz9ceO/A==}
-    engines: {node: ^18.0.0 || >=20.0.0}
-
   nanoid@3.3.11:
     resolution: {integrity: sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
@@ -1410,6 +1406,9 @@ packages:
     resolution: {integrity: sha512-ra7Kvlhxn5V9Slyus0ygMa2h+UqExPqUIkfk7Pc8QTLT956JLSy51uWFwHtIYy0vI8cB4BDhc/S03+880My/LQ==}
     engines: {node: ^18.17.0 || >=20.5.0}
     hasBin: true
+
+  node-readable-to-web-readable-stream@0.4.2:
+    resolution: {integrity: sha512-/cMZNI34v//jUTrI+UIo4ieHAB5EZRY/+7OmXZgBxaWBMcW2tGdceIw06RFxWxrKZ5Jp3sI2i5TsRo+CBhtVLQ==}
 
   nopt@8.1.0:
     resolution: {integrity: sha512-ieGu42u/Qsa4TFktmaKEwM6MQH0pOWnaB3htzh0JRtx84+Mebc0cbZYN5bC+6WTZ4+77xrL9Pn5m7CV6VIkV7A==}
@@ -1492,9 +1491,9 @@ packages:
   pathe@2.0.3:
     resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
 
-  pdfjs-dist@4.10.38:
-    resolution: {integrity: sha512-/Y3fcFrXEAsMjJXeL9J8+ZG9U01LbuWaYypvDW2ycW1jL269L3js3DVBjDJ0Up9Np1uqDXsDrRihHANhZOlwdQ==}
-    engines: {node: '>=20'}
+  pdfjs-dist@5.6.205:
+    resolution: {integrity: sha512-tlUj+2IDa7G1SbvBNN74UHRLJybZDWYom+k6p5KIZl7huBvsA4APi6mKL+zCxd3tLjN5hOOEE9Tv7VdzO88pfg==}
+    engines: {node: '>=20.19.0 || >=22.13.0 || >=24'}
 
   pe-library@0.4.1:
     resolution: {integrity: sha512-eRWB5LBz7PpDu4PUlwT0PhnQfTQJlDDdPa35urV4Osrm0t0AqQFGn+UIkU3klZvwJ8KPO3VbBFsXquA6p6kqZw==}
@@ -2015,14 +2014,6 @@ packages:
       utf-8-validate:
         optional: true
 
-  xml2js@0.6.2:
-    resolution: {integrity: sha512-T4rieHaC1EXcES0Kxxj4JWgaUQHDk+qwHcYOCFHfiwKz7tOVPLq7Hjq9dM1WCMhylqMEfP7hMcOIChvotiZegA==}
-    engines: {node: '>=4.0.0'}
-
-  xmlbuilder@11.0.1:
-    resolution: {integrity: sha512-fDlsI/kFEx7gLvbecc0/ohLG50fugQp8ryHzMTuW9vSa1GJ0XYWKnhsUx7oie3G98+r56aTQIUB4kht42R3JvA==}
-    engines: {node: '>=4.0'}
-
   xmlbuilder@15.1.1:
     resolution: {integrity: sha512-yMqGBqtXyeN1e3TGYvgNgDVZ3j84W4cwkOXQswghol6APgZWaff9lnbvN7MHYJOiXsvGPXtjTYJEiC9J2wv9Eg==}
     engines: {node: '>=8.0'}
@@ -2355,7 +2346,7 @@ snapshots:
     dependencies:
       '@types/http-cache-semantics': 4.2.0
       '@types/keyv': 3.1.4
-      '@types/node': 24.12.0
+      '@types/node': 24.12.2
       '@types/responselike': 1.0.3
 
   '@types/chai@5.2.3':
@@ -2373,40 +2364,40 @@ snapshots:
 
   '@types/fs-extra@9.0.13':
     dependencies:
-      '@types/node': 25.5.0
+      '@types/node': 25.5.2
 
   '@types/http-cache-semantics@4.2.0': {}
 
   '@types/keyv@3.1.4':
     dependencies:
-      '@types/node': 24.12.0
+      '@types/node': 24.12.2
 
   '@types/ms@2.1.0': {}
 
-  '@types/node@24.12.0':
+  '@types/node@24.12.2':
     dependencies:
       undici-types: 7.16.0
 
-  '@types/node@25.5.0':
+  '@types/node@25.5.2':
     dependencies:
       undici-types: 7.18.2
 
   '@types/plist@3.0.5':
     dependencies:
-      '@types/node': 25.5.0
+      '@types/node': 25.5.2
       xmlbuilder: 15.1.1
     optional: true
 
   '@types/responselike@1.0.3':
     dependencies:
-      '@types/node': 24.12.0
+      '@types/node': 24.12.2
 
   '@types/verror@1.10.11':
     optional: true
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 24.12.0
+      '@types/node': 24.12.2
     optional: true
 
   '@vitest/expect@4.1.2':
@@ -2418,13 +2409,13 @@ snapshots:
       chai: 6.2.2
       tinyrainbow: 3.1.0
 
-  '@vitest/mocker@4.1.2(vite@8.0.3(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)(@types/node@25.5.0)(jiti@2.6.1))':
+  '@vitest/mocker@4.1.2(vite@8.0.3(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)(@types/node@25.5.2)(jiti@2.6.1))':
     dependencies:
       '@vitest/spy': 4.1.2
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
-      vite: 8.0.3(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)(@types/node@25.5.0)(jiti@2.6.1)
+      vite: 8.0.3(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)(@types/node@25.5.2)(jiti@2.6.1)
 
   '@vitest/pretty-format@4.1.2':
     dependencies:
@@ -2450,24 +2441,24 @@ snapshots:
       convert-source-map: 2.0.0
       tinyrainbow: 3.1.0
 
-  '@xiboplayer/cache@0.7.11':
+  '@xiboplayer/cache@0.7.15':
     dependencies:
-      '@xiboplayer/utils': 0.7.11
+      '@xiboplayer/utils': 0.7.15
       spark-md5: 3.0.2
 
-  '@xiboplayer/core@0.7.11(@xiboplayer/cache@0.7.11)(@xiboplayer/renderer@0.7.11)(@xiboplayer/schedule@0.7.11)(@xiboplayer/xmds@0.7.11)':
+  '@xiboplayer/core@0.7.15(@xiboplayer/cache@0.7.15)(@xiboplayer/renderer@0.7.15)(@xiboplayer/schedule@0.7.15)(@xiboplayer/xmds@0.7.15)':
     dependencies:
-      '@xiboplayer/cache': 0.7.11
-      '@xiboplayer/renderer': 0.7.11
-      '@xiboplayer/schedule': 0.7.11
-      '@xiboplayer/utils': 0.7.11
-      '@xiboplayer/xmds': 0.7.11
+      '@xiboplayer/cache': 0.7.15
+      '@xiboplayer/renderer': 0.7.15
+      '@xiboplayer/schedule': 0.7.15
+      '@xiboplayer/utils': 0.7.15
+      '@xiboplayer/xmds': 0.7.15
 
-  '@xiboplayer/crypto@0.7.11': {}
+  '@xiboplayer/crypto@0.7.15': {}
 
-  '@xiboplayer/proxy@0.7.11':
+  '@xiboplayer/proxy@0.7.15':
     dependencies:
-      '@xiboplayer/utils': 0.7.11
+      '@xiboplayer/utils': 0.7.15
       bonjour-service: 1.3.0
       cors: 2.8.6
       express: 5.2.1
@@ -2477,63 +2468,61 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@xiboplayer/pwa@0.7.11':
+  '@xiboplayer/pwa@0.7.15':
     dependencies:
-      '@xiboplayer/cache': 0.7.11
-      '@xiboplayer/core': 0.7.11(@xiboplayer/cache@0.7.11)(@xiboplayer/renderer@0.7.11)(@xiboplayer/schedule@0.7.11)(@xiboplayer/xmds@0.7.11)
-      '@xiboplayer/crypto': 0.7.11
-      '@xiboplayer/renderer': 0.7.11
-      '@xiboplayer/schedule': 0.7.11
-      '@xiboplayer/settings': 0.7.11
-      '@xiboplayer/stats': 0.7.11
-      '@xiboplayer/sw': 0.7.11
-      '@xiboplayer/sync': 0.7.11
-      '@xiboplayer/utils': 0.7.11
-      '@xiboplayer/xmds': 0.7.11
-      '@xiboplayer/xmr': 0.7.11
+      '@xiboplayer/cache': 0.7.15
+      '@xiboplayer/core': 0.7.15(@xiboplayer/cache@0.7.15)(@xiboplayer/renderer@0.7.15)(@xiboplayer/schedule@0.7.15)(@xiboplayer/xmds@0.7.15)
+      '@xiboplayer/crypto': 0.7.15
+      '@xiboplayer/renderer': 0.7.15
+      '@xiboplayer/schedule': 0.7.15
+      '@xiboplayer/settings': 0.7.15
+      '@xiboplayer/stats': 0.7.15
+      '@xiboplayer/sw': 0.7.15
+      '@xiboplayer/sync': 0.7.15
+      '@xiboplayer/utils': 0.7.15
+      '@xiboplayer/xmds': 0.7.15
+      '@xiboplayer/xmr': 0.7.15
       html2canvas: 1.4.1
-      nanoevents: 9.1.0
-      xml2js: 0.6.2
 
-  '@xiboplayer/renderer@0.7.11':
+  '@xiboplayer/renderer@0.7.15':
     dependencies:
-      '@xiboplayer/cache': 0.7.11
-      '@xiboplayer/schedule': 0.7.11
-      '@xiboplayer/utils': 0.7.11
-      pdfjs-dist: 4.10.38
+      '@xiboplayer/cache': 0.7.15
+      '@xiboplayer/schedule': 0.7.15
+      '@xiboplayer/utils': 0.7.15
+      pdfjs-dist: 5.6.205
 
-  '@xiboplayer/schedule@0.7.11':
+  '@xiboplayer/schedule@0.7.15':
     dependencies:
-      '@xiboplayer/utils': 0.7.11
+      '@xiboplayer/utils': 0.7.15
 
-  '@xiboplayer/settings@0.7.11':
+  '@xiboplayer/settings@0.7.15':
     dependencies:
-      '@xiboplayer/utils': 0.7.11
+      '@xiboplayer/utils': 0.7.15
 
-  '@xiboplayer/stats@0.7.11':
+  '@xiboplayer/stats@0.7.15':
     dependencies:
-      '@xiboplayer/utils': 0.7.11
+      '@xiboplayer/utils': 0.7.15
 
-  '@xiboplayer/sw@0.7.11':
+  '@xiboplayer/sw@0.7.15':
     dependencies:
-      '@xiboplayer/cache': 0.7.11
-      '@xiboplayer/utils': 0.7.11
+      '@xiboplayer/cache': 0.7.15
+      '@xiboplayer/utils': 0.7.15
 
-  '@xiboplayer/sync@0.7.11':
+  '@xiboplayer/sync@0.7.15':
     dependencies:
-      '@xiboplayer/utils': 0.7.11
+      '@xiboplayer/utils': 0.7.15
 
-  '@xiboplayer/utils@0.7.11':
+  '@xiboplayer/utils@0.7.15':
     dependencies:
-      '@xiboplayer/crypto': 0.7.11
+      '@xiboplayer/crypto': 0.7.15
 
-  '@xiboplayer/xmds@0.7.11':
+  '@xiboplayer/xmds@0.7.15':
     dependencies:
-      '@xiboplayer/utils': 0.7.11
+      '@xiboplayer/utils': 0.7.15
 
-  '@xiboplayer/xmr@0.7.11':
+  '@xiboplayer/xmr@0.7.15':
     dependencies:
-      '@xiboplayer/utils': 0.7.11
+      '@xiboplayer/utils': 0.7.15
 
   '@xmldom/xmldom@0.8.12': {}
 
@@ -3003,7 +2992,7 @@ snapshots:
   electron@41.1.1:
     dependencies:
       '@electron/get': 2.0.3
-      '@types/node': 24.12.0
+      '@types/node': 24.12.2
       extract-zip: 2.0.1
     transitivePeerDependencies:
       - supports-color
@@ -3598,8 +3587,6 @@ snapshots:
       dns-packet: 5.6.1
       thunky: 1.1.0
 
-  nanoevents@9.1.0: {}
-
   nanoid@3.3.11: {}
 
   negotiator@1.0.0: {}
@@ -3629,6 +3616,9 @@ snapshots:
       which: 5.0.0
     transitivePeerDependencies:
       - supports-color
+
+  node-readable-to-web-readable-stream@0.4.2:
+    optional: true
 
   nopt@8.1.0:
     dependencies:
@@ -3696,9 +3686,10 @@ snapshots:
 
   pathe@2.0.3: {}
 
-  pdfjs-dist@4.10.38:
+  pdfjs-dist@5.6.205:
     optionalDependencies:
       '@napi-rs/canvas': 0.1.97
+      node-readable-to-web-readable-stream: 0.4.2
 
   pe-library@0.4.1: {}
 
@@ -4135,7 +4126,7 @@ snapshots:
       extsprintf: 1.4.1
     optional: true
 
-  vite@8.0.3(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)(@types/node@25.5.0)(jiti@2.6.1):
+  vite@8.0.3(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)(@types/node@25.5.2)(jiti@2.6.1):
     dependencies:
       lightningcss: 1.32.0
       picomatch: 4.0.4
@@ -4143,17 +4134,17 @@ snapshots:
       rolldown: 1.0.0-rc.12(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)
       tinyglobby: 0.2.15
     optionalDependencies:
-      '@types/node': 25.5.0
+      '@types/node': 25.5.2
       fsevents: 2.3.3
       jiti: 2.6.1
     transitivePeerDependencies:
       - '@emnapi/core'
       - '@emnapi/runtime'
 
-  vitest@4.1.2(@types/node@25.5.0)(vite@8.0.3(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)(@types/node@25.5.0)(jiti@2.6.1)):
+  vitest@4.1.2(@types/node@25.5.2)(vite@8.0.3(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)(@types/node@25.5.2)(jiti@2.6.1)):
     dependencies:
       '@vitest/expect': 4.1.2
-      '@vitest/mocker': 4.1.2(vite@8.0.3(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)(@types/node@25.5.0)(jiti@2.6.1))
+      '@vitest/mocker': 4.1.2(vite@8.0.3(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)(@types/node@25.5.2)(jiti@2.6.1))
       '@vitest/pretty-format': 4.1.2
       '@vitest/runner': 4.1.2
       '@vitest/snapshot': 4.1.2
@@ -4170,10 +4161,10 @@ snapshots:
       tinyexec: 1.0.4
       tinyglobby: 0.2.15
       tinyrainbow: 3.1.0
-      vite: 8.0.3(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)(@types/node@25.5.0)(jiti@2.6.1)
+      vite: 8.0.3(@emnapi/core@1.9.1)(@emnapi/runtime@1.9.1)(@types/node@25.5.2)(jiti@2.6.1)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 25.5.0
+      '@types/node': 25.5.2
     transitivePeerDependencies:
       - msw
 
@@ -4211,13 +4202,6 @@ snapshots:
   wrappy@1.0.2: {}
 
   ws@8.20.0: {}
-
-  xml2js@0.6.2:
-    dependencies:
-      sax: 1.6.0
-      xmlbuilder: 11.0.1
-
-  xmlbuilder@11.0.1: {}
 
   xmlbuilder@15.1.1: {}
 
