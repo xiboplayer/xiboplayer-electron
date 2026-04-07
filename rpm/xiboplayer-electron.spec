@@ -139,8 +139,8 @@ SERVICE
 %{_userunitdir}/%{name}.service
 
 %post
-# Register alternatives (higher priority than Chromium)
-alternatives --install %{_bindir}/xiboplayer xiboplayer %{_bindir}/%{name} 60
+# Register alternatives (lower priority than Chromium)
+alternatives --install %{_bindir}/xiboplayer xiboplayer %{_bindir}/%{name} 50
 
 touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
 gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :

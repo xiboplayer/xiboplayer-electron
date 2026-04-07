@@ -154,8 +154,8 @@ SERVICE
 
 %post
 # Register alternatives (EL9 uses chkconfig for alternatives)
-alternatives --install %{_bindir}/xiboplayer xiboplayer %{_bindir}/%{name} 60 2>/dev/null || \
-    /usr/sbin/update-alternatives --install %{_bindir}/xiboplayer xiboplayer %{_bindir}/%{name} 60 2>/dev/null || true
+alternatives --install %{_bindir}/xiboplayer xiboplayer %{_bindir}/%{name} 50 2>/dev/null || \
+    /usr/sbin/update-alternatives --install %{_bindir}/xiboplayer xiboplayer %{_bindir}/%{name} 50 2>/dev/null || true
 
 touch --no-create %{_datadir}/icons/hicolor &>/dev/null || :
 gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
