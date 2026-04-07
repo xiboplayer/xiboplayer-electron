@@ -157,6 +157,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Tue Apr 07 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.16-1
+- Fix setup redirect loop, add GPU tile/renderer/msaa flags, rebrand to xiboplayer, switch default to Chromium
+
 * Sat Apr 04 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.15-1
 - Security fixes (XSS, TLS bypass, secret redaction), bug fixes (EventEmitter.once, GPU sort, insertCSS leak, dead deps), shared GPU/memory module, popup suppression, Chromium memory tier sync
 
