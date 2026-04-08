@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@xiboplayer/proxy": "0.7.17",
-    "@xiboplayer/pwa": "0.7.17",
+    "@xiboplayer/pwa": "0.7.16",
     "electron-auto-launch": "^5.0.7"
   },
   "devDependencies": {
