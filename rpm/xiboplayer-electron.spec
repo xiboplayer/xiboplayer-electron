@@ -193,7 +193,7 @@ fi
 * Wed Mar 25 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.6-1
 - Timer deferral fix, offline playback, download/cache race fixes, Electron 41 with --no-zygote GPU fix, Chromium kiosk optimization
 
-* Mon Mar 24 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.5-2
+* Tue Mar 24 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.5-2
 - Upgrade Electron 40.8.3 to 41.0.3 (Chrome 144 to 146)
 - Fix pnpm onlyBuiltDependencies for Electron postinstall
 

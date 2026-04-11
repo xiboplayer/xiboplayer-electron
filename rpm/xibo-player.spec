@@ -125,7 +125,7 @@ fi
 gtk-update-icon-cache %{_datadir}/icons/hicolor &>/dev/null || :
 
 %changelog
-* Mon Jan 27 2026 Pau Aliagas <linuxnow@gmail.com> - 0.9.0-1
+* Tue Jan 27 2026 Pau Aliagas <linuxnow@gmail.com> - 0.9.0-1
 - Initial RPM package
 - Electron wrapper for PWA player
 - Systemd user service for auto-start

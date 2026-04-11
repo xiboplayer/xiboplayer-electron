@@ -173,6 +173,6 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
-* Tue Apr 01 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.10-1
+* Wed Apr 01 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.10-1
 - Initial Rocky Linux / EL9 package
 - Adjusted dependencies for EL9 (at-spi2-atk, libxkbcommon, libdrm, etc.)
