@@ -157,6 +157,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Tue Apr 14 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.19-1
+- Stability fixes + chromium instrumentation: proxy crash on closed client stream, stale-cache age log calculation, chromium launcher renderer log forwarding, SECURITY.md, SBOM CI.
+
 * Sun Apr 12 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.18-1
 - Layout transitions and xmds reliability fixes
 
