@@ -70,7 +70,7 @@ jobs:
 
   release:
     needs: [rpm, deb]
-    uses: xibo-players/.github/.github/workflows/create-release.yml@5c3b3699cd05c12bb3ec76e5d1d317d539dd69b4  # main
+    uses: xibo-players/.github/.github/workflows/create-release.yml@96da5ad926a365cb7d2fbde1d1d207253dd1c861  # main
     with:
       package-name: xiboplayer-electron
       description: 'Electron-based Xibo digital signage player with hardware acceleration.'
