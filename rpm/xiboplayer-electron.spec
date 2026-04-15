@@ -8,7 +8,7 @@
 %global __requires_exclude ^(libc\\.so\\(\\)|libdl\\.so\\.2|libpthread\\.so\\.0|librt\\.so\\.1|libffmpeg\\.so)
 
 Name:           xiboplayer-electron
-Version:        %{_version}
+Version:        0.7.19
 Release:        1%{?dist}
 Summary:        Xibo digital signage player (Electron)
 
