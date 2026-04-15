@@ -40,7 +40,7 @@ jobs:
   rpm:
     needs: [wait-for-pwa]
     if: always() && (needs.wait-for-pwa.result == 'success' || needs.wait-for-pwa.result == 'skipped')
-    uses: xibo-players/.github/.github/workflows/build-rpm.yml@5c3b3699cd05c12bb3ec76e5d1d317d539dd69b4  # main
+    uses: xibo-players/.github/.github/workflows/build-rpm.yml@99b65f33c5227c49a8f093cb776894ef82e4d77e  # main
     with:
       package-name: xiboplayer-electron
       build-command: 'pnpm run build:linux'
@@ -56,7 +56,7 @@ jobs:
   deb:
     needs: [wait-for-pwa]
     if: always() && (needs.wait-for-pwa.result == 'success' || needs.wait-for-pwa.result == 'skipped')
-    uses: xibo-players/.github/.github/workflows/build-deb.yml@5c3b3699cd05c12bb3ec76e5d1d317d539dd69b4  # main
+    uses: xibo-players/.github/.github/workflows/build-deb.yml@99b65f33c5227c49a8f093cb776894ef82e4d77e  # main
     with:
       package-name: xiboplayer-electron
       build-command: 'pnpm run build:linux'
