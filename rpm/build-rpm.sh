@@ -56,8 +56,9 @@ echo "    $TARBALL ($(du -h "$TARBALL" | cut -f1))"
 # ── Build RPM ─────────────────────────────────────────────────────────
 cp "$SPEC_DIR/xiboplayer-electron.spec" ~/rpmbuild/SPECS/
 echo "==> Running rpmbuild..."
-rpmbuild -ba ~/rpmbuild/SPECS/xiboplayer-electron.spec \
-    --define "_version $VERSION"
+# Spec uses literal Version: line (matches chromium); the release-xiboplayer
+# Ansible playbook bumps it. No --define "_version" needed.
+rpmbuild -ba ~/rpmbuild/SPECS/xiboplayer-electron.spec
 
 # ── Collect and display results ───────────────────────────────────────
 pkg_collect_rpms ~/rpmbuild
