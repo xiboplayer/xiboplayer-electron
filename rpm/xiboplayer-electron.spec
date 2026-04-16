@@ -8,8 +8,8 @@
 %global __requires_exclude ^(libc\\.so\\(\\)|libdl\\.so\\.2|libpthread\\.so\\.0|librt\\.so\\.1|libffmpeg\\.so)
 
 Name:           xiboplayer-electron
-Version:        0.7.21
-Release:        2%{?dist}
+Version:        0.7.22
+Release:        1%{?dist}
 Summary:        Xibo digital signage player (Electron)
 
 License:        AGPL-3.0-or-later
@@ -157,6 +157,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Thu Apr 16 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.22-1
+- Datasource package with dedup/cache/offline, @xiboplayer/expr XPath runtime + xp:state store, xpIf runtime gating in renderer, setSyncGroup API with layout-tag sync bridge, window.xpDatasource in widget iframe context
+
 * Thu Apr 16 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.21-2
 - Fix tray icon not loading: include resources/icon.png in app.asar
 
