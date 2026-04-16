@@ -8,7 +8,7 @@
 %global __requires_exclude ^(libc\\.so\\(\\)|libdl\\.so\\.2|libpthread\\.so\\.0|librt\\.so\\.1|libffmpeg\\.so)
 
 Name:           xiboplayer-electron
-Version:        0.7.19
+Version:        0.7.20
 Release:        1%{?dist}
 Summary:        Xibo digital signage player (Electron)
 
@@ -157,6 +157,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Thu Apr 16 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.20-1
+- GPU detection: virtio-gpu / QEMU / VMware SVGA force software rendering to avoid crash loop. Real GPUs unchanged.
+
 * Tue Apr 14 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.19-1
 - Stability fixes + chromium instrumentation: proxy crash on closed client stream, stale-cache age log calculation, chromium launcher renderer log forwarding, SECURITY.md, SBOM CI.
 
