@@ -73,9 +73,18 @@ app.setPath('sessionData', path.join(dataHome, 'xiboplayer', instanceSuffix));
 // Detect available GPUs via /sys/class/drm and select the best one.
 // Override: --gpu=nvidia|intel|amd|auto|/dev/dri/renderDNNN, config.gpu, XIBO_GPU env
 const GPU_VENDORS = {
-  '0x10de': { name: 'nvidia', label: 'NVIDIA', rank: 3, vaDriver: 'nvidia' },
-  '0x1002': { name: 'amd', label: 'AMD', rank: 2, vaDriver: 'radeonsi' },
-  '0x8086': { name: 'intel', label: 'Intel', rank: 1, vaDriver: 'iHD' },
+  '0x10de': { name: 'nvidia', label: 'NVIDIA',   rank: 3,  vaDriver: 'nvidia',   isVirtual: false },
+  '0x1002': { name: 'amd',    label: 'AMD',      rank: 2,  vaDriver: 'radeonsi', isVirtual: false },
+  '0x8086': { name: 'intel',  label: 'Intel',    rank: 1,  vaDriver: 'iHD',      isVirtual: false },
+  // Virtual GPUs — detection finds them (they expose a DRM render node)
+  // but hardware-accelerated Electron/Chromium ops fail at runtime with
+  // EACCES on DRM_IOCTL_MODE_CREATE_DUMB. Ranked -1 so real GPUs always
+  // win on hybrid setups (e.g. GPU passthrough to VM which reports real
+  // vendor ID). On a pure-virtual setup we still select this GPU but
+  // skip --render-node-override and force software rendering.
+  '0x1af4': { name: 'virtio', label: 'virtio-GPU', rank: -1, vaDriver: null,    isVirtual: true },
+  '0x1234': { name: 'qemu',   label: 'QEMU VGA',   rank: -1, vaDriver: null,    isVirtual: true },
+  '0x15ad': { name: 'vmware', label: 'VMware SVGA', rank: -1, vaDriver: null,   isVirtual: true },
 };
 
 function detectGPUs() {
@@ -113,7 +122,7 @@ function detectGPUs() {
         d.startsWith(`${card}-`) && /-(DP|HDMI|eDP|VGA|DVI|DSI|LVDS)/.test(d)
       );
 
-      const info = GPU_VENDORS[vendor] || { name: 'unknown', label: vendor, rank: 0, vaDriver: null };
+      const info = GPU_VENDORS[vendor] || { name: 'unknown', label: vendor, rank: 0, vaDriver: null, isVirtual: false };
       gpus.push({ card, vendor, device, driver, renderNode, hasDisplay, ...info });
     }
   } catch (_) {}
@@ -152,16 +161,24 @@ function setupGPU() {
   const gpu = selectGPU(detectedGPUs, pref);
 
   if (detectedGPUs.length > 0) {
-    console.log(`[GPU] Detected: ${detectedGPUs.map(g => `${g.label} ${g.device} (${g.renderNode}${g.hasDisplay ? ', display' : ', render-only'})`).join(', ')}`);
+    console.log(`[GPU] Detected: ${detectedGPUs.map(g => `${g.label} ${g.device} (${g.renderNode}${g.hasDisplay ? ', display' : ', render-only'}${g.isVirtual ? ', virtual' : ''})`).join(', ')}`);
   }
   if (gpu) {
-    console.log(`[GPU] Selected: ${gpu.label} ${gpu.device} → ${gpu.renderNode} (pref: ${pref})`);
-    // Point Chromium's GPU process at the chosen render node
-    app.commandLine.appendSwitch('render-node-override', gpu.renderNode);
-    // Set VA-API driver for hardware video decode
-    if (gpu.vaDriver) {
-      process.env.LIBVA_DRIVER_NAME = gpu.vaDriver;
-      console.log(`[GPU] VA-API driver: ${gpu.vaDriver}`);
+    // On a virtual GPU, the render-node-override propagates a device
+    // that supports DRM but not usable hardware acceleration — Chromium
+    // then crashes with EACCES on MODE_CREATE_DUMB. Skip the override
+    // so the software-rendering path kicks in. Opt out of this fallback
+    // via XIBOPLAYER_FORCE_GPU=1 for operators with a working virgl pipe.
+    const forceGpu = process.env.XIBOPLAYER_FORCE_GPU === '1';
+    if (gpu.isVirtual && !forceGpu) {
+      console.log(`[GPU] Selected: ${gpu.label} (virtual) → software rendering`);
+    } else {
+      console.log(`[GPU] Selected: ${gpu.label} ${gpu.device} → ${gpu.renderNode} (pref: ${pref})`);
+      app.commandLine.appendSwitch('render-node-override', gpu.renderNode);
+      if (gpu.vaDriver) {
+        process.env.LIBVA_DRIVER_NAME = gpu.vaDriver;
+        console.log(`[GPU] VA-API driver: ${gpu.vaDriver}`);
+      }
     }
   } else if (pref !== 'auto') {
     console.warn(`[GPU] Requested "${pref}" not found — falling back to Chromium default`);
@@ -169,22 +186,42 @@ function setupGPU() {
   return gpu;
 }
 
+// Probe once at load time so we can branch the GPU-accel flag block
+// below (which runs before app.whenReady() and therefore before
+// setupGPU()). Same virtual-detection logic as setupGPU().
+const selectedGpuIsVirtual = (() => {
+  const pref = gpuPreference || 'auto';
+  const gpu = selectGPU(detectedGPUs, pref);
+  return gpu && gpu.isVirtual && process.env.XIBOPLAYER_FORCE_GPU !== '1';
+})();
+
 // GPU acceleration flags — must be set before app.whenReady()
 // Confirmed by Electron maintainer (mitchchn): GPU flags ARE passed to
 // zygote-spawned processes (electron/electron#50462, PR #50509).
 // TODO: refactor to use @xiboplayer/proxy/hardware once ESM/CJS boundary is resolved
-app.commandLine.appendSwitch('ignore-gpu-blocklist');
-app.commandLine.appendSwitch('enable-gpu-rasterization');
-app.commandLine.appendSwitch('enable-zero-copy');
 app.commandLine.appendSwitch('default-tile-width', '512');
 app.commandLine.appendSwitch('default-tile-height', '512');
 app.commandLine.appendSwitch('renderer-process-limit', '1');
-app.commandLine.appendSwitch('gpu-rasterization-msaa-sample-count', '0');
-app.commandLine.appendSwitch('enable-features',
-  'AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL,' +
-  'VaapiVideoDecoder,VaapiVideoEncoder,VaapiOnNvidiaGPUs,' +
-  'AcceleratedVideoEncoder,CanvasOopRasterization,' +
-  'WaylandLinuxDrmSyncobj');
+
+if (selectedGpuIsVirtual) {
+  // Virtual GPU (virtio-gpu, QEMU Bochs VBE, VMware SVGA). Hardware
+  // acceleration fails at runtime with EACCES on MODE_CREATE_DUMB
+  // (Boxes / libvirt / QEMU default). Force software rendering via
+  // SwiftShader so Electron stays up instead of crash-looping.
+  app.commandLine.appendSwitch('disable-gpu');
+  app.commandLine.appendSwitch('disable-gpu-compositing');
+  app.commandLine.appendSwitch('disable-gpu-rasterization');
+} else {
+  app.commandLine.appendSwitch('ignore-gpu-blocklist');
+  app.commandLine.appendSwitch('enable-gpu-rasterization');
+  app.commandLine.appendSwitch('enable-zero-copy');
+  app.commandLine.appendSwitch('gpu-rasterization-msaa-sample-count', '0');
+  app.commandLine.appendSwitch('enable-features',
+    'AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL,' +
+    'VaapiVideoDecoder,VaapiVideoEncoder,VaapiOnNvidiaGPUs,' +
+    'AcceleratedVideoEncoder,CanvasOopRasterization,' +
+    'WaylandLinuxDrmSyncobj');
+}
 
 // Prevent GPU crash and renderer freeze when screen is locked/off
 app.commandLine.appendSwitch('disable-gpu-watchdog');
