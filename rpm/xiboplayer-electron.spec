@@ -9,7 +9,7 @@
 
 Name:           xiboplayer-electron
 Version:        0.7.21
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Xibo digital signage player (Electron)
 
 License:        AGPL-3.0-or-later
@@ -157,6 +157,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Thu Apr 16 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.21-2
+- Fix tray icon not loading: include resources/icon.png in app.asar
+
 * Thu Apr 16 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.21-1
 - GPU fix followup: lower best_rank init so virtio rank -1 is selectable (bug in 0.7.20 virtual-GPU detection)
 
