@@ -42,6 +42,7 @@
     },
     "files": [
       "src/**/*",
+      "resources/icon.png",
       "package.json"
     ],
     "linux": {
