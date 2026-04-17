@@ -72,85 +72,23 @@ app.setPath('sessionData', path.join(dataHome, 'xiboplayer', instanceSuffix));
 // ─── GPU Detection & Selection ──────────────────────────────────────
 // Detect available GPUs via /sys/class/drm and select the best one.
 // Override: --gpu=nvidia|intel|amd|auto|/dev/dri/renderDNNN, config.gpu, XIBO_GPU env
-const GPU_VENDORS = {
-  '0x10de': { name: 'nvidia', label: 'NVIDIA',   rank: 3,  vaDriver: 'nvidia',   isVirtual: false },
-  '0x1002': { name: 'amd',    label: 'AMD',      rank: 2,  vaDriver: 'radeonsi', isVirtual: false },
-  '0x8086': { name: 'intel',  label: 'Intel',    rank: 1,  vaDriver: 'iHD',      isVirtual: false },
-  // Virtual GPUs — detection finds them (they expose a DRM render node)
-  // but hardware-accelerated Electron/Chromium ops fail at runtime with
-  // EACCES on DRM_IOCTL_MODE_CREATE_DUMB. Ranked -1 so real GPUs always
-  // win on hybrid setups (e.g. GPU passthrough to VM which reports real
-  // vendor ID). On a pure-virtual setup we still select this GPU but
-  // skip --render-node-override and force software rendering.
-  '0x1af4': { name: 'virtio', label: 'virtio-GPU', rank: -1, vaDriver: null,    isVirtual: true },
-  '0x1234': { name: 'qemu',   label: 'QEMU VGA',   rank: -1, vaDriver: null,    isVirtual: true },
-  '0x15ad': { name: 'vmware', label: 'VMware SVGA', rank: -1, vaDriver: null,   isVirtual: true },
-};
-
-function detectGPUs() {
-  const gpus = [];
-  try {
-    const drmEntries = fs.readdirSync('/sys/class/drm');
-    const cards = drmEntries.filter(d => /^card\d+$/.test(d));
-    for (const card of cards) {
-      const devPath = `/sys/class/drm/${card}/device`;
-      let vendor, device, driver;
-      try {
-        vendor = fs.readFileSync(`${devPath}/vendor`, 'utf8').trim();
-        device = fs.readFileSync(`${devPath}/device`, 'utf8').trim();
-      } catch (_) { continue; }
-      try {
-        driver = path.basename(fs.readlinkSync(`${devPath}/driver`));
-      } catch (_) { driver = 'unknown'; }
-
-      // Find the render node for this card by matching device paths
-      const cardRealPath = fs.realpathSync(devPath);
-      let renderNode = null;
-      for (const rn of drmEntries.filter(d => d.startsWith('renderD'))) {
-        try {
-          if (fs.realpathSync(`/sys/class/drm/${rn}/device`) === cardRealPath) {
-            renderNode = `/dev/dri/${rn}`;
-            break;
-          }
-        } catch (_) {}
-      }
-      if (!renderNode) continue;
-
-      // Check if this card has display connectors (DP, HDMI, eDP, VGA, etc.)
-      // Cards with connectors drive actual displays; render-only GPUs have none.
-      const hasDisplay = drmEntries.some(d =>
-        d.startsWith(`${card}-`) && /-(DP|HDMI|eDP|VGA|DVI|DSI|LVDS)/.test(d)
-      );
-
-      const info = GPU_VENDORS[vendor] || { name: 'unknown', label: vendor, rank: 0, vaDriver: null, isVirtual: false };
-      gpus.push({ card, vendor, device, driver, renderNode, hasDisplay, ...info });
-    }
-  } catch (_) {}
-  return gpus;
-}
-
-function selectGPU(gpus, preference) {
-  if (!preference || preference === 'auto') {
-    // On hybrid GPU systems (Optimus/PRIME), the discrete GPU can't share
-    // buffers with the display GPU on Wayland (dmabuf cross-device fails).
-    // Prefer the GPU that has display connectors — it can composite directly.
-    const displayGPUs = gpus.filter(g => g.hasDisplay);
-    const renderOnly = gpus.filter(g => !g.hasDisplay);
-    if (displayGPUs.length > 0 && renderOnly.length > 0) {
-      // Hybrid system: pick the display GPU (safe default)
-      displayGPUs.sort((a, b) => b.rank - a.rank);
-      return displayGPUs[0];
-    }
-    // Single-GPU or all GPUs have displays: pick highest rank
-    return [...gpus].sort((a, b) => b.rank - a.rank)[0] || null;
-  }
-  // Direct render node path: /dev/dri/renderDNNN
-  if (preference.startsWith('/dev/dri/')) {
-    return gpus.find(g => g.renderNode === preference) || null;
-  }
-  // Vendor name: nvidia, intel, amd
-  return gpus.find(g => g.name === preference.toLowerCase()) || null;
-}
+//
+// Detection, vendor table, selection, and memory tuning live in the
+// shared module `@xiboplayer/proxy/hardware` — see xibo-players/
+// xiboplayer#324 (SDK side) and xibo-players/xiboplayer-electron#65
+// (Electron side) for the dedup rationale. The SDK's hardware.cjs
+// is the single source of truth; the Chromium kiosk consumes it via
+// CLI, and now Electron consumes it via require().
+//
+// What stays in this file: Electron-specific flag application (
+// `setupGPU`, the virtual-GPU software-render branch, extended
+// `enable-features` list — different from Chromium kiosk).
+const {
+  GPU_VENDORS,
+  detectGPUs,
+  selectGPU,
+  getMemoryTuning,
+} = require('@xiboplayer/proxy/hardware');
 
 const detectedGPUs = detectGPUs();
 const gpuPreference = parseArgument('gpu') || process.env.XIBO_GPU || null;
@@ -251,27 +189,9 @@ app.commandLine.appendSwitch('disable-renderer-backgrounding');
 // Adaptive memory tuning — scale V8 heap and raster threads to hardware.
 // Player JS is lightweight; the big consumers are video decode buffers (VAAPI)
 // and Chromium's GPU compositing, which we can't cap without losing HW accel.
-const totalRAM_GB = Math.round(os.totalmem() / (1024 ** 3));
-const cpuCount = os.cpus().length;
-
-let maxOldSpaceMB, rasterThreads;
-if (totalRAM_GB <= 1) {
-  maxOldSpaceMB = 128;
-  rasterThreads = 1;
-} else if (totalRAM_GB <= 2) {
-  maxOldSpaceMB = 192;
-  rasterThreads = 2;
-} else if (totalRAM_GB <= 4) {
-  maxOldSpaceMB = 256;
-  rasterThreads = Math.min(cpuCount, 2);
-} else if (totalRAM_GB <= 8) {
-  maxOldSpaceMB = 512;
-  rasterThreads = Math.min(cpuCount, 4);
-} else {
-  maxOldSpaceMB = 768;
-  rasterThreads = Math.min(cpuCount, 4);
-}
-
+// Logic lives in @xiboplayer/proxy/hardware so Chromium kiosk + Electron pick
+// the same numbers from identical input. See xibo-players/xiboplayer-electron#65.
+const { totalRAM_GB, cpuCount, maxOldSpaceMB, rasterThreads } = getMemoryTuning();
 app.commandLine.appendSwitch('js-flags', `--max-old-space-size=${maxOldSpaceMB}`);
 app.commandLine.appendSwitch('num-raster-threads', String(rasterThreads));
 console.log(`[Memory] ${totalRAM_GB}GB RAM, ${cpuCount} CPUs → V8 heap ${maxOldSpaceMB}MB, ${rasterThreads} raster threads`);
