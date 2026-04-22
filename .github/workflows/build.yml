@@ -56,7 +56,7 @@ jobs:
   deb:
     needs: [wait-for-pwa]
     if: always() && (needs.wait-for-pwa.result == 'success' || needs.wait-for-pwa.result == 'skipped')
-    uses: xibo-players/.github/.github/workflows/build-deb.yml@99b65f33c5227c49a8f093cb776894ef82e4d77e  # main
+    uses: xibo-players/.github/.github/workflows/build-deb.yml@b32631e9f28d649efea2873282c79bb439c13751  # main
     with:
       package-name: xiboplayer-electron
       build-command: 'pnpm run build:linux'
