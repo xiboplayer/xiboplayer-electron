@@ -101,7 +101,7 @@ redirects back to the setup screen automatically.
 
 ### Auto-authorize via CMS API (optional)
 
-By default, new displays must be manually authorized by a CMS administrator. To skip this step, add OAuth2 API credentials to `config.json` — see the [PWA README](https://github.com/xibo-players/xiboplayer-pwa#auto-authorize-via-cms-api-optional) for full setup instructions including CMS Application configuration:
+By default, new displays must be manually authorized by a CMS administrator. To skip this step, add OAuth2 API credentials to `config.json` — see the [PWA README](https://github.com/xiboplayer/xiboplayer-pwa#auto-authorize-via-cms-api-optional) for full setup instructions including CMS Application configuration:
 
 ```json
 {
@@ -460,7 +460,7 @@ rm -rf ~/.local/share/applications/xiboplayer-electron.desktop
 
 ## Support
 
-- **GitHub Issues:** https://github.com/xibo-players/xiboplayer-electron/issues
+- **GitHub Issues:** https://github.com/xiboplayer/xiboplayer-electron/issues
 
 ## Credits
 

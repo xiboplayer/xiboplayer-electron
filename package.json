@@ -9,7 +9,7 @@
   "homepage": "https://xiboplayer.org",
   "repository": {
     "type": "git",
-    "url": "https://github.com/xibo-players/xiboplayer-electron.git"
+    "url": "https://github.com/xiboplayer/xiboplayer-electron.git"
   },
   "scripts": {
     "start": "electron .",
