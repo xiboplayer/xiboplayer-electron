@@ -22,7 +22,7 @@
     "test:e2e:xvfb": "xvfb-run playwright test"
   },
   "dependencies": {
-    "@xiboplayer/proxy": "0.7.22",
+    "@xiboplayer/proxy": "0.7.23",
     "@xiboplayer/pwa": "0.7.22",
     "electron-auto-launch": "latest"
   },
