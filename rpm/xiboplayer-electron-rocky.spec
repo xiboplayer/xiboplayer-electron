@@ -120,7 +120,7 @@ Description=Xibo Player - Digital Signage (Electron)
 After=graphical-session.target
 Wants=graphical-session.target
 PartOf=graphical-session.target
-Documentation=https://github.com/xibo-players/xiboplayer-electron
+Documentation=https://github.com/xiboplayer/xiboplayer-electron
 StartLimitIntervalSec=60
 StartLimitBurst=5
 

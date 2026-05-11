@@ -74,8 +74,8 @@ app.setPath('sessionData', path.join(dataHome, 'xiboplayer', instanceSuffix));
 // Override: --gpu=nvidia|intel|amd|auto|/dev/dri/renderDNNN, config.gpu, XIBO_GPU env
 //
 // Detection, vendor table, selection, and memory tuning live in the
-// shared module `@xiboplayer/proxy/hardware` — see xibo-players/
-// xiboplayer#324 (SDK side) and xibo-players/xiboplayer-electron#65
+// shared module `@xiboplayer/proxy/hardware` — see xiboplayer/
+// xiboplayer#324 (SDK side) and xiboplayer/xiboplayer-electron#65
 // (Electron side) for the dedup rationale. The SDK's hardware.cjs
 // is the single source of truth; the Chromium kiosk consumes it via
 // CLI, and now Electron consumes it via require().
@@ -190,7 +190,7 @@ app.commandLine.appendSwitch('disable-renderer-backgrounding');
 // Player JS is lightweight; the big consumers are video decode buffers (VAAPI)
 // and Chromium's GPU compositing, which we can't cap without losing HW accel.
 // Logic lives in @xiboplayer/proxy/hardware so Chromium kiosk + Electron pick
-// the same numbers from identical input. See xibo-players/xiboplayer-electron#65.
+// the same numbers from identical input. See xiboplayer/xiboplayer-electron#65.
 const { totalRAM_GB, cpuCount, maxOldSpaceMB, rasterThreads } = getMemoryTuning();
 app.commandLine.appendSwitch('js-flags', `--max-old-space-size=${maxOldSpaceMB}`);
 app.commandLine.appendSwitch('num-raster-threads', String(rasterThreads));
