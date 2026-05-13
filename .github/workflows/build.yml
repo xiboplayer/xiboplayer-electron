@@ -40,7 +40,7 @@ jobs:
   rpm:
     needs: [wait-for-pwa]
     if: always() && (needs.wait-for-pwa.result == 'success' || needs.wait-for-pwa.result == 'skipped')
-    uses: xiboplayer/.github/.github/workflows/build-rpm.yml@b32631e9f28d649efea2873282c79bb439c13751  # main
+    uses: xiboplayer/.github/.github/workflows/build-rpm.yml@46da335eed4b80fcc1bb8015686152b4290f7617  # main
     with:
       package-name: xiboplayer-electron
       build-command: 'pnpm run build:linux'
