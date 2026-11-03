@@ -40,14 +40,14 @@ jobs:
   rpm:
     needs: [wait-for-pwa]
     if: always() && (needs.wait-for-pwa.result == 'success' || needs.wait-for-pwa.result == 'skipped')
-    uses: xiboplayer/.github/.github/workflows/build-rpm.yml@9af382cf12830bca426a1a99e4b59532ee72a711  # main
+    uses: xiboplayer/.github/.github/workflows/build-rpm.yml@2f9f0f369ade9accb7afb1577a61d5a38e2883fc  # main
     with:
       package-name: xiboplayer-electron
       build-command: 'pnpm run build:linux'
       rpm-spec: 'rpm/xiboplayer-electron.spec'
       rpm-script: 'rpm/build-rpm.sh'
       rpm-output-dir: dist-packages
-      fedora-matrix: '["43", "44"]'
+      fedora-matrix: '["44", "45"]'
       arch-matrix: '["x86_64", "aarch64"]'
       gpg-sign: true
       publish-to-repo: true
