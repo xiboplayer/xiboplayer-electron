@@ -8,7 +8,7 @@
 %global __requires_exclude ^(libc\\.so\\(\\)|libdl\\.so\\.2|libpthread\\.so\\.0|librt\\.so\\.1|libffmpeg\\.so)
 
 Name:           xiboplayer-electron
-Version:        0.7.22
+Version:        0.7.23
 Release:        1%{?dist}
 Summary:        Xibo digital signage player (Electron)
 
@@ -157,6 +157,9 @@ if [ $1 -eq 0 ] ; then
 fi
 
 %changelog
+* Wed Nov 18 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.23-1
+- Build RPMs for Fedora 44 and 45; bump @xiboplayer/* to 0.7.23
+
 * Thu Apr 16 2026 Pau Aliagas <linuxnow@gmail.com> - 0.7.22-1
 - Datasource package with dedup/cache/offline, @xiboplayer/expr XPath runtime + xp:state store, xpIf runtime gating in renderer, setSyncGroup API with layout-tag sync bridge, window.xpDatasource in widget iframe context
 
